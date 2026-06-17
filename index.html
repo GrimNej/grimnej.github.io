@@ -2,495 +2,399 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>GrimNej Portfolio</title>
+    <meta
+      name="description"
+      content="GrimNej, aka Ginej Neupane, builds AI prototypes, cloud-native tools, and high-performance systems from idea to working product."
+    />
+    <meta name="theme-color" content="#0a0d10" />
+    <title>GrimNej | AI Systems Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=IBM+Plex+Mono:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="mediaqueries.css" />
   </head>
   <body>
-    <!-- Desktop navigation -->
-    <nav id="desktop-nav">
-      <div class="logo">GrimNej</div>
-      <div>
-        <ul class="nav-links">
-          <li><a href="#about">About</a></li>
-          <li><a href="#experience">Experience</a></li>
-          <li><a href="#projects">Projects</a></li>
-          <li><a href="#contact">Contact</a></li>
-        </ul>
-      </div>
-    </nav>
-    <!-- Mobile hamburger navigation -->
-    <nav id="hamburger-nav">
-      <div class="logo">GrimNej</div>
-      <div class="hamburger-menu">
-        <div class="hamburger-icon" onclick="toggleMenu()">
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="site-header" data-header>
+      <a class="brand" href="#home" aria-label="GrimNej home">
+        <span class="brand-mark">GN</span>
+        <span>
+          <strong>GrimNej</strong>
+          <small>AI / Cloud / Systems</small>
+        </span>
+      </a>
+
+      <nav class="primary-nav" aria-label="Primary navigation">
+        <button
+          class="nav-toggle"
+          type="button"
+          aria-label="Open menu"
+          aria-expanded="false"
+          data-nav-toggle
+        >
           <span></span>
           <span></span>
-          <span></span>
+        </button>
+        <div class="nav-panel" data-nav-panel>
+          <a href="#about">About</a>
+          <a href="#work">Work</a>
+          <a href="#stack">Stack</a>
+          <a href="#contact">Contact</a>
         </div>
-        <div class="menu-links">
-          <li><a href="#about" onclick="toggleMenu()">About</a></li>
-          <li><a href="#experience" onclick="toggleMenu()">Experience</a></li>
-          <li><a href="#projects" onclick="toggleMenu()">Projects</a></li>
-          <li><a href="#contact" onclick="toggleMenu()">Contact</a></li>
-        </div>
-      </div>
-    </nav>
-    <!-- Hero / Profile section -->
-    <section id="profile">
-      <div class="section__pic-container">
-        <img src="./assets/profile-picn.png" alt="GrimNej profile picture" />
-      </div>
-      <div class="section__text">
-        <p class="section__text__p1">Hello, I'm</p>
-        <h1 class="title">GrimNej</h1>
-        <!-- real name subtitle -->
-        <p class="section__text__p3">aka Ginej Neupane</p>
-        <p class="section__text__p2">AI Solutions Architect<br />&<br />Systems Engineer</p>
-        <div class="btn-container">
-          <button
-            class="btn btn-color-2"
-            onclick="window.open('./assets/resume-example.pdf')"
-          >
-            Download CV
-          </button>
-          <button class="btn btn-color-1" onclick="location.href='#contact'">
-            Contact Info
-          </button>
-        </div>
-        <div id="socials-container">
-          <img
-            src="./assets/linkedin.png"
-            alt="My LinkedIn profile"
-            class="icon"
-            onclick="location.href='https://www.linkedin.com/in/grimnej/'"
-          />
-          <img
-            src="./assets/github.png"
-            alt="My Github profile"
-            class="icon"
-            onclick="location.href='https://github.com/GrimNej'"
-          />
-          <img
-            src="./assets/youtube.png"
-            alt="My YouTube channel"
-            class="icon"
-            onclick="location.href='https://www.youtube.com/@grimnej'"
-          />
-          <img
-            src="./assets/discord.png"
-            alt="My Discord profile"
-            class="icon"
-            onclick="location.href='https://discord.com/users/713227090635391046'"
-          />
-          <img
-            src="./assets/Twitter.webp"
-            alt="My Twitter profile"
-            class="icon"
-            onclick="location.href='https://twitter.com/grimnej1'"
-          />
-          <img
-            src="./assets/instagram.png"
-            alt="My Instagram profile"
-            class="icon"
-            onclick="location.href='https://www.instagram.com/grimnej/'"
-          />
-        </div>
-      </div>
-    </section>
-    <!-- About Me section -->
-    <section id="about" class="fade-in">
-      <p class="section__text__p1">Get To Know More</p>
-      <h1 class="title">About Me</h1>
-      <div class="section-container">
-        <div class="section__pic-container">
-          <img
-            src="./assets/about-pic.png"
-            alt="Profile picture"
-            class="about-pic"
-          />
-        </div>
-        <div class="about-details-container">
-          <div class="about-containers">
-            <div class="details-container">
-              <img
-                src="./assets/experience.png"
-                alt="Experience icon"
-                class="icon"
-              />
-              <h3>Experience</h3>
-              <p>6 months<br />AI Solutions Architect (Intern)</p>
+      </nav>
+    </header>
+
+    <main id="main">
+      <section class="hero section-shell" id="home">
+        <div class="hero-copy reveal">
+          <p class="eyebrow">Ginej Neupane / GrimNej</p>
+          <h1>AI systems engineer for fast prototypes that can grow up.</h1>
+          <p class="hero-lede">
+            I turn rough product ideas into working AI and cloud-backed systems:
+            architecture, automation, RAG pipelines, bots, search tools, and MVPs
+            that show whether an idea is real.
+          </p>
+          <div class="hero-actions" aria-label="Primary actions">
+            <a class="button primary" href="#work">See selected builds</a>
+            <a class="button secondary" href="assets/resume-example.pdf" target="_blank" rel="noreferrer">
+              Download CV
+            </a>
+          </div>
+          <div class="signal-grid" aria-label="Portfolio highlights">
+            <div>
+              <strong>5</strong>
+              <span>featured tools</span>
             </div>
-            <div class="details-container">
-              <img
-                src="./assets/education.png"
-                alt="Education icon"
-                class="icon"
-              />
-              <h3>Education</h3>
-              <p>Bachelor of Computer<br />Applications</p>
+            <div>
+              <strong>36</strong>
+              <span>GitHub repos</span>
+            </div>
+            <div>
+              <strong>2026</strong>
+              <span>GSoC prep</span>
             </div>
           </div>
-          <div class="text-container">
+        </div>
+
+        <div class="hero-visual reveal" aria-label="Portrait and focus areas">
+          <div class="portrait-stage">
+            <img src="assets/profile-picn.png" alt="Portrait of Ginej Neupane" />
+          </div>
+          <div class="focus-board" aria-label="Current focus">
+            <span>Rapid MVP execution</span>
+            <span>Agentic AI systems</span>
+            <span>Cloud deployment</span>
+            <span>Python automation</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="marquee-band" aria-label="Core positioning">
+        <div>
+          <span>AI architecture</span>
+          <span>Prototype velocity</span>
+          <span>Semantic search</span>
+          <span>Cloud-ready systems</span>
+          <span>Transparent execution</span>
+        </div>
+      </section>
+
+      <section class="about section-shell" id="about">
+        <div class="section-kicker reveal">
+          <p class="eyebrow">About</p>
+          <h2>Built for the messy middle between idea and product.</h2>
+        </div>
+        <div class="about-layout">
+          <div class="about-image reveal">
+            <img src="assets/about-pic.png" alt="Black and white portrait of Ginej Neupane" />
+          </div>
+          <div class="about-copy reveal">
             <p>
-              I'm Ginej Neupane, better known as GrimNej in the dev community.
-              I'm an AI Solutions Architect and High Performance Systems Engineer.
-              My primary suit is rapid execution. I specialize in building prototypes
-              and functional MVPs in the shortest amount of time possible. If you have
-              a concept and need to know if it is technically viable, I can provide a
-              verdict and deliver a working product that serves as a solid foundation
-              for your future ventures.<br /><br />
-              As a full stack engineer, I'm not bound to any specific stack or framework.
-              I have a comprehensive understanding of the current landscape and use whatever
-              tools are necessary to architect systems that scale. Whether it is complex
-              RAG pipelines or high-performance automation through strict code, I focus on
-              building robust architectures rather than just writing scripts. My approach is
-              rooted in an architectural mindset and total transparency. When we work together,
-              you have a partner who is 100% on your side. I value the human element and bring
-              a sense of friendliness to my communication, ensuring we stay on the same spectrum
-              throughout the entire development journey.<br /><br />
-              I am looking for AI startups and enterprise teams that need elite engineering and
-              someone who can move from idea to execution with speed, and also people who just
-              want to test out the ideas in their head to figure out if it's viable or not via
-              building a quick prototype or an MVP. If you need a partner who can bring your
-              vision to life in record time, let's talk.
+              I am Ginej Neupane, better known as GrimNej in the developer
+              community. I am a Bachelor of Computer Application student from
+              Nepal focused on AI, cloud computing, scalable deployment, and open
+              source engineering.
+            </p>
+            <p>
+              My strongest mode is rapid execution. I can take an unclear concept,
+              map the architecture, identify the technical risk, and produce a
+              functional prototype or MVP quickly enough to make the next decision
+              obvious.
+            </p>
+            <p>
+              I work across stacks instead of forcing one. Python, Rust,
+              TypeScript, Docker, Linux, cloud APIs, LLM workflows, and strict
+              automation are tools in the same kit: choose the right pieces, make
+              the system understandable, then ship.
             </p>
           </div>
         </div>
-      </div>
-      <img
-        src="./assets/arrow.png"
-        alt="Arrow icon"
-        class="icon arrow"
-        onclick="location.href='#experience'"
-      />
-    </section>
-    <!-- Experience / Skills section -->
-    <section id="experience" class="fade-in">
-      <p class="section__text__p1">Explore My</p>
-      <h1 class="title">Experience</h1>
-      <div class="experience-details-container">
-        <div class="about-containers">
-          <!-- Column 1: AI and Programming -->
-          <div class="details-container">
-            <h2 class="experience-sub-title">AI & Programming</h2>
-            <div class="article-container">
-              <article>
-                <img
-                  src="./assets/checkmark.png"
-                  alt="Experience icon"
-                  class="icon"
-                />
-                <div>
-                  <h3>Python</h3>
-                  <p>Experienced</p>
-                </div>
-              </article>
-              <article>
-                <img
-                  src="./assets/checkmark.png"
-                  alt="Experience icon"
-                  class="icon"
-                />
-                <div>
-                  <h3>Rust</h3>
-                  <p>Experienced</p>
-                </div>
-              </article>
-              <article>
-                <img
-                  src="./assets/checkmark.png"
-                  alt="Experience icon"
-                  class="icon"
-                />
-                <div>
-                  <h3>JavaScript</h3>
-                  <p>Intermediate</p>
-                </div>
-              </article>
-              <article>
-                <img
-                  src="./assets/checkmark.png"
-                  alt="Experience icon"
-                  class="icon"
-                />
-                <div>
-                  <h3>Agentic AI</h3>
-                  <p>Intermediate</p>
-                </div>
-              </article>
-              <article>
-                <img
-                  src="./assets/checkmark.png"
-                  alt="Experience icon"
-                  class="icon"
-                />
-                <div>
-                  <h3>Generative AI</h3>
-                  <p>Basic</p>
-                </div>
-              </article>
-              <article>
-                <img
-                  src="./assets/checkmark.png"
-                  alt="Experience icon"
-                  class="icon"
-                />
-                <div>
-                  <h3>Machine Learning</h3>
-                  <p>Intermediate</p>
-                </div>
-              </article>
-            </div>
+      </section>
+
+      <section class="experience section-shell" aria-label="Experience highlights">
+        <div class="experience-row reveal">
+          <div>
+            <span class="metric">6 mo.</span>
+            <p>AI Solutions Architect internship experience.</p>
           </div>
-          <!-- Column 2: Cloud and Tools -->
-          <div class="details-container">
-            <h2 class="experience-sub-title">Cloud & Tools</h2>
-            <div class="article-container">
-              <article>
-                <img
-                  src="./assets/checkmark.png"
-                  alt="Experience icon"
-                  class="icon"
-                />
-                <div>
-                  <h3>AWS</h3>
-                  <p>Basic</p>
-                </div>
-              </article>
-              <article>
-                <img
-                  src="./assets/checkmark.png"
-                  alt="Experience icon"
-                  class="icon"
-                />
-                <div>
-                  <h3>Google Cloud</h3>
-                  <p>Basic</p>
-                </div>
-              </article>
-              <article>
-                <img
-                  src="./assets/checkmark.png"
-                  alt="Experience icon"
-                  class="icon"
-                />
-                <div>
-                  <h3>Docker</h3>
-                  <p>Intermediate</p>
-                </div>
-              </article>
-              <article>
-                <img
-                  src="./assets/checkmark.png"
-                  alt="Experience icon"
-                  class="icon"
-                />
-                <div>
-                  <h3>Linux/Bash</h3>
-                  <p>Intermediate</p>
-                </div>
-              </article>
-              <article>
-                <img
-                  src="./assets/checkmark.png"
-                  alt="Experience icon"
-                  class="icon"
-                />
-                <div>
-                  <h3>CI/CD Pipelines</h3>
-                  <p>Basic</p>
-                </div>
-              </article>
-              <article>
-                <img
-                  src="./assets/checkmark.png"
-                  alt="Experience icon"
-                  class="icon"
-                />
-                <div>
-                  <h3>Agentic Coding</h3>
-                  <p>Experienced</p>
-                </div>
-              </article>
-            </div>
+          <div>
+            <span class="metric">BCA</span>
+            <p>Bachelor of Computer Application, 3rd year.</p>
+          </div>
+          <div>
+            <span class="metric">AI/Cloud</span>
+            <p>Current specialization path and long-term engineering focus.</p>
           </div>
         </div>
-      </div>
-      <img
-        src="./assets/arrow.png"
-        alt="Arrow icon"
-        class="icon arrow"
-        onclick="location.href='#projects'"
-      />
-    </section>
-    <!-- Projects section (placeholder links - configure later) -->
-    <section id="projects" class="fade-in">
-      <p class="section__text__p1">Browse My Recent</p>
-      <h1 class="title">Projects</h1>
-      <div class="experience-details-container">
-        <div class="about-containers">
-          <!-- Project 1 -->
-          <div class="details-container color-container">
-            <div class="article-container">
-              <img
-                src="./assets/project-1-new.png"
-                alt="Open Proto"
-                class="project-img"
-              />
+      </section>
+
+      <section class="work section-shell" id="work">
+        <div class="section-kicker reveal">
+          <p class="eyebrow">Selected builds</p>
+          <h2>Six builds with clear product intent.</h2>
+        </div>
+
+        <div class="project-grid">
+          <article class="project-card featured reveal">
+            <img src="assets/project-peek-a-comment.png" alt="Peek-A-Comment project preview" />
+            <div class="project-content">
+              <p class="project-tag">Kotlin / Rust / MCP</p>
+              <h3>Peek-A-Comment</h3>
+              <p>
+                A floating overlay that watches the screen, extracts the text
+                that matters, and hands it to your favorite LLM with your own
+                commenting voice attached.
+              </p>
+              <div class="project-meta">
+                <span>Screen context capture</span>
+                <span>LLM comment drafting</span>
+                <span>MCP tool suite</span>
+              </div>
+              <a class="text-link" href="https://github.com/GrimNej/Peek-A-Comment" target="_blank" rel="noreferrer">
+                View repository
+              </a>
             </div>
-            <h2 class="experience-sub-title project-title">Open Proto</h2>
-            <div class="btn-container">
-              <button
-                class="btn btn-color-2 project-btn"
-                onclick="location.href='https://github.com/GrimNej/Open-Proto'"
-              >
-                Github
-              </button>
-              <!-- Demo Video button hidden until a video is recorded
-              <button
-                class="btn btn-color-2 project-btn"
-                onclick="location.href='#'"
-              >
-                Demo Video
-              </button>
-              -->
+          </article>
+
+          <article class="project-card reveal">
+            <img src="assets/project-1-new.png" alt="Open Proto project preview" />
+            <div class="project-content">
+              <p class="project-tag">Python / AI coding engine</p>
+              <h3>Open Proto</h3>
+              <p>
+                Bridges a software idea and a production-grade architectural
+                foundation with repository context, dependency maps, and
+                codebase-aware retrieval.
+              </p>
+              <div class="project-meta">
+                <span>Architecture graph mapping</span>
+                <span>Multi-agent integration</span>
+                <span>Context snippets</span>
+              </div>
+              <a class="text-link" href="https://github.com/GrimNej/Open-Proto" target="_blank" rel="noreferrer">
+                View repository
+              </a>
             </div>
+          </article>
+
+          <article class="project-card reveal">
+            <img src="assets/project-2-new.png" alt="OrthoVerba project preview" />
+            <div class="project-content">
+              <p class="project-tag">TypeScript / speech tooling</p>
+              <h3>OrthoVerba</h3>
+              <p>
+                A browser-based voice-following teleprompter for readers who need
+                real-time script alignment, contextual phrase highlighting, and
+                automatic smart scrolling.
+              </p>
+              <div class="project-meta">
+                <span>Speech-to-text alignment</span>
+                <span>Precision reading flow</span>
+                <span>Cross-device interface</span>
+              </div>
+              <a class="text-link" href="https://github.com/GrimNej/Project-OrthoVerba" target="_blank" rel="noreferrer">
+                View repository
+              </a>
+            </div>
+          </article>
+
+          <article class="project-card reveal">
+            <img src="assets/project-editing-buddy.png" alt="Editing Buddy project preview" />
+            <div class="project-content">
+              <p class="project-tag">Python / Premiere workflow</p>
+              <h3>Editing Buddy</h3>
+              <p>
+                A lightweight desktop recorder that captures screen and audio,
+                then drops clips and screenshots directly into Adobe Premiere
+                Pro.
+              </p>
+              <div class="project-meta">
+                <span>Screen recording</span>
+                <span>Premiere auto-import</span>
+                <span>Native desktop UI</span>
+              </div>
+              <a class="text-link" href="https://github.com/GrimNej/Editing-Buddy" target="_blank" rel="noreferrer">
+                View repository
+              </a>
+            </div>
+          </article>
+
+          <article class="project-card reveal">
+            <img src="assets/project-3-new.png" alt="ServerMind project preview" />
+            <div class="project-content">
+              <p class="project-tag">Python / semantic search</p>
+              <h3>ServerMind</h3>
+              <p>
+                Searches through years of Discord history by meaning instead of
+                exact keywords, turning scattered server conversations into a
+                retrievable knowledge base.
+              </p>
+              <div class="project-meta">
+                <span>Meaning-based search</span>
+                <span>Message history indexing</span>
+                <span>Knowledge retrieval</span>
+              </div>
+              <a class="text-link" href="https://github.com/GrimNej/ServerMind-Semantic-Search-Bot" target="_blank" rel="noreferrer">
+                View repository
+              </a>
+            </div>
+          </article>
+
+          <article class="project-card reveal">
+            <img src="assets/project-adaptive-persona.png" alt="Adaptive Persona Discord AI Bot project preview" />
+            <div class="project-content">
+              <p class="project-tag">Python / Discord AI</p>
+              <h3>Adaptive Persona Bot</h3>
+              <p>
+                A Discord bot framework that creates personality-driven bots
+                that adapt to server energy, conversation context, and topic
+                flow.
+              </p>
+              <div class="project-meta">
+                <span>Adaptive personality</span>
+                <span>Context GIFs</span>
+                <span>Multi-user tracking</span>
+              </div>
+              <a class="text-link" href="https://github.com/GrimNej/Adaptive-Persona-Discord-Ai-Bot" target="_blank" rel="noreferrer">
+                View repository
+              </a>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="stack section-shell" id="stack">
+        <div class="section-kicker reveal">
+          <p class="eyebrow">Stack</p>
+          <h2>Tools chosen for speed, clarity, and scale.</h2>
+        </div>
+
+        <div class="stack-grid reveal">
+          <div class="stack-column">
+            <h3>Languages</h3>
+            <ul>
+              <li>Python</li>
+              <li>Rust</li>
+              <li>JavaScript</li>
+              <li>TypeScript</li>
+            </ul>
           </div>
-          <!-- Project 2 -->
-          <div class="details-container color-container">
-            <div class="article-container">
-              <img
-                src="./assets/project-2-new.png"
-                alt="OrthoVerba"
-                class="project-img"
-              />
-            </div>
-            <h2 class="experience-sub-title project-title">OrthoVerba</h2>
-            <div class="btn-container">
-              <button
-                class="btn btn-color-2 project-btn"
-                onclick="location.href='https://github.com/GrimNej/Project-OrthoVerba'"
-              >
-                Github
-              </button>
-              <!-- Demo Video button hidden until a video is recorded
-              <button
-                class="btn btn-color-2 project-btn"
-                onclick="location.href='#'"
-              >
-                Demo Video
-              </button>
-              -->
-            </div>
+          <div class="stack-column">
+            <h3>AI systems</h3>
+            <ul>
+              <li>Agentic AI</li>
+              <li>Generative AI</li>
+              <li>RAG pipelines</li>
+              <li>Machine learning</li>
+            </ul>
           </div>
-          <!-- Project 3 -->
-          <div class="details-container color-container">
-            <div class="article-container">
-              <img
-                src="./assets/project-3-new.png"
-                alt="ServerMind"
-                class="project-img"
-              />
-            </div>
-            <h2 class="experience-sub-title project-title">ServerMind</h2>
-            <div class="btn-container">
-              <button
-                class="btn btn-color-2 project-btn"
-                onclick="location.href='https://github.com/GrimNej/ServerMind-Semantic-Search-Bot'"
-              >
-                Github
-              </button>
-              <!-- Demo Video button hidden until a video is recorded
-              <button disabled
-                class="btn btn-color-2 project-btn"
-                onclick="location.href='#'"
-              >
-                Demo Video
-              </button>
-              -->
-            </div>
+          <div class="stack-column">
+            <h3>Infrastructure</h3>
+            <ul>
+              <li>AWS</li>
+              <li>Google Cloud</li>
+              <li>Docker</li>
+              <li>Linux / Bash</li>
+            </ul>
+          </div>
+          <div class="stack-column">
+            <h3>Delivery</h3>
+            <ul>
+              <li>CI/CD basics</li>
+              <li>Architecture planning</li>
+              <li>Prototype validation</li>
+              <li>Technical transparency</li>
+            </ul>
           </div>
         </div>
-      </div>
-      <img
-        src="./assets/arrow.png"
-        alt="Arrow icon"
-        class="icon arrow"
-        onclick="location.href='#contact'"
-      />
-    </section>
-    <!-- Contact section -->
-    <section id="contact" class="fade-in">
-      <p class="section__text__p1">Get in Touch</p>
-      <h1 class="title">Contact Me</h1>
-      <div class="contact-info-upper-container">
-        <div class="contact-info-container">
-          <img
-            src="./assets/email.png"
-            alt="Email icon"
-            class="icon contact-icon email-icon"
-          />
-          <p><a href="mailto:grim98413@gmail.com">grim98413@gmail.com</a></p>
+      </section>
+
+      <section class="principles section-shell" aria-label="Operating principles">
+        <div class="section-kicker reveal">
+          <p class="eyebrow">Operating mode</p>
+          <h2>How I approach hard builds.</h2>
         </div>
-        <div class="contact-info-container">
-          <img
-            src="./assets/linkedin.png"
-            alt="LinkedIn icon"
-            class="icon contact-icon"
-          />
-          <p><a href="https://www.linkedin.com/in/grimnej/">LinkedIn</a></p>
+        <div class="principle-grid">
+          <article class="principle reveal">
+            <span>01</span>
+            <h3>Verdict first</h3>
+            <p>
+              I identify whether the concept is technically viable before the
+              work becomes expensive.
+            </p>
+          </article>
+          <article class="principle reveal">
+            <span>02</span>
+            <h3>Prototype with intent</h3>
+            <p>
+              MVPs should answer a real question, reveal risk, and create a
+              foundation the next version can use.
+            </p>
+          </article>
+          <article class="principle reveal">
+            <span>03</span>
+            <h3>Explain the system</h3>
+            <p>
+              Clear architecture and transparent tradeoffs matter as much as
+              working code.
+            </p>
+          </article>
         </div>
-        <div class="contact-info-container">
-          <img
-            src="./assets/youtube.png"
-            alt="YouTube icon"
-            class="icon contact-icon"
-          />
-          <p><a href="https://www.youtube.com/@grimnej">YouTube</a></p>
+      </section>
+
+      <section class="contact section-shell" id="contact">
+        <div class="contact-copy reveal">
+          <p class="eyebrow">Contact</p>
+          <h2>Bring a rough idea. I will help make it testable.</h2>
+          <p>
+            Best fit: AI startups, enterprise teams, founders, and builders who
+            need fast technical validation or a prototype that can become a
+            serious product.
+          </p>
         </div>
-        <div class="contact-info-container">
-          <img
-            src="./assets/discord.png"
-            alt="Discord icon"
-            class="icon contact-icon"
-          />
-          <p><a href="https://discord.com/users/713227090635391046">Discord</a></p>
+        <div class="contact-rail reveal" aria-label="Contact and social profiles">
+          <a class="primary-contact" href="mailto:grim98413@gmail.com">Email</a>
+          <a href="https://github.com/GrimNej" target="_blank" rel="noreferrer">GitHub</a>
+          <a href="https://www.linkedin.com/in/grimnej/" target="_blank" rel="noreferrer">LinkedIn</a>
+          <a href="https://www.youtube.com/@grimnej" target="_blank" rel="noreferrer">YouTube</a>
+          <a href="https://discord.com/users/713227090635391046" target="_blank" rel="noreferrer">Discord</a>
+          <a href="https://twitter.com/grimnej1" target="_blank" rel="noreferrer">Twitter</a>
+          <a href="https://www.instagram.com/grimnej/" target="_blank" rel="noreferrer">Instagram</a>
         </div>
-        <div class="contact-info-container">
-          <img
-            src="./assets/Twitter.webp"
-            alt="Twitter icon"
-            class="icon contact-icon"
-          />
-          <p><a href="https://twitter.com/grimnej1">Twitter</a></p>
-        </div>
-        <div class="contact-info-container">
-          <img
-            src="./assets/instagram.png"
-            alt="Instagram icon"
-            class="icon contact-icon"
-          />
-          <p><a href="https://www.instagram.com/grimnej/">Instagram</a></p>
-        </div>
-      </div>
-    </section>
-    <!-- Footer -->
-    <footer>
-      <nav>
-        <div class="nav-links-container">
-          <ul class="nav-links">
-            <li><a href="#about">About</a></li>
-            <li><a href="#experience">Experience</a></li>
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="#contact">Contact</a></li>
-          </ul>
-        </div>
-      </nav>
-      <p>Copyright &#169; 2025 GrimNej. All Rights Reserved.</p>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>Copyright &copy; <span data-year>2026</span> GrimNej. Built for velocity and clarity.</p>
+      <a href="#home">Back to top</a>
     </footer>
+
     <script src="script.js"></script>
   </body>
 </html>
