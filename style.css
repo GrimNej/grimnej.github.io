@@ -321,6 +321,20 @@ h3 {
   color: var(--muted);
 }
 
+.qualitative-grid strong {
+  max-width: 10ch;
+  color: var(--acid);
+  font-size: clamp(1.05rem, 1.6vw, 1.45rem);
+  line-height: 1.05;
+}
+
+.qualitative-grid span {
+  display: block;
+  margin-top: 0.75rem;
+  font-size: 0.88rem;
+  line-height: 1.35;
+}
+
 .hero-visual {
   display: grid;
   gap: 1rem;
@@ -545,6 +559,12 @@ h3 {
   margin: 1rem 0 0;
 }
 
+.experience-row .metric {
+  color: var(--acid);
+  font-size: clamp(1.1rem, 2.1vw, 2rem);
+  line-height: 1.05;
+}
+
 .project-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -674,7 +694,7 @@ h3 {
 }
 
 .stack-column {
-  min-height: 310px;
+  min-height: 360px;
   padding: clamp(1.1rem, 3vw, 1.6rem);
   background: rgba(17, 23, 29, 0.9);
 }
