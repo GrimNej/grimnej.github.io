@@ -43,8 +43,9 @@
         </button>
         <div class="nav-panel" data-nav-panel>
           <a href="#about">About</a>
-          <a href="#work">Work</a>
           <a href="#stack">Stack</a>
+          <a href="#work">Work</a>
+          <a href="#ai-news">Featured</a>
           <a href="#contact">Contact</a>
         </div>
       </nav>
@@ -155,139 +156,168 @@
         </div>
       </section>
 
+      <section class="signal-desk section-shell" id="ai-news">
+        <div class="section-kicker reveal">
+          <p class="eyebrow">Featured project</p>
+          <h2>A focused side project without crowding the portfolio.</h2>
+        </div>
+
+        <div class="news-bridge reveal">
+          <div class="news-bridge-copy">
+            <p class="project-tag">Subdomain / curated technology brief</p>
+            <h3>AI News</h3>
+            <p>
+              AI News is a curated discovery layer for high-signal AI, startup,
+              research, security, and developer stories. It lives on its own
+              subdomain so the portfolio stays focused on my work, while still
+              giving the project a clear doorway for people who want the feed.
+            </p>
+            <div class="project-meta">
+              <span>Original source links</span>
+              <span>Visual discovery feed</span>
+              <span>Separate product surface</span>
+            </div>
+            <div class="bridge-actions">
+              <a class="button primary" href="https://ainews.grimnej.com" target="_blank" rel="noreferrer">
+                Open AI News
+              </a>
+              <a class="button secondary" href="#work">See project menu</a>
+            </div>
+          </div>
+
+          <div class="news-console" aria-label="AI News positioning">
+            <div>
+              <span>Location</span>
+              <strong>ainews.grimnej.com</strong>
+            </div>
+            <div>
+              <span>Portfolio role</span>
+              <strong>Featured project</strong>
+            </div>
+            <div>
+              <span>Best access</span>
+              <strong>External link, not iframe</strong>
+            </div>
+            <div>
+              <span>Why separate</span>
+              <strong>Keeps the portfolio clean</strong>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section class="work section-shell" id="work">
         <div class="section-kicker reveal">
           <p class="eyebrow">Selected builds</p>
-          <h2>Six builds with clear product intent.</h2>
+          <h2>Spin through the builds, then inspect the details.</h2>
         </div>
 
-        <div class="project-grid">
-          <article class="project-card featured reveal">
-            <img src="assets/project-peek-a-comment.png" alt="Peek-A-Comment project preview" />
-            <div class="project-content">
-              <p class="project-tag">Kotlin / Rust / MCP</p>
-              <h3>Peek-A-Comment</h3>
-              <p>
-                An on-device AI commenting assistant that watches the screen,
-                extracts text, frames context, and generates comments in your
-                personalized voice.
-              </p>
-              <div class="project-meta">
-                <span>Floating bubble overlay</span>
-                <span>On-device OCR</span>
-                <span>Multi-provider AI</span>
-              </div>
-              <a class="text-link" href="https://github.com/GrimNej/Peek-A-Comment" target="_blank" rel="noreferrer">
-                View repository
-              </a>
+        <div class="project-orbit reveal" data-project-orbit>
+          <div
+            class="orbit-stage"
+            data-orbit-stage
+            aria-label="Interactive project menu. Drag horizontally or use the controls."
+          >
+            <div class="orbit-ring" data-orbit-ring>
+              <button
+                class="orbit-node"
+                type="button"
+                data-orbit-node
+                data-title="Peek-A-Comment"
+                data-tag="Kotlin / Rust / MCP"
+                data-brief="An on-device AI commenting assistant that watches the screen, extracts text, frames context, and generates comments in your personalized voice."
+                data-link="https://github.com/GrimNej/Peek-A-Comment"
+                data-image="assets/project-peek-a-comment.png"
+              >
+                <img src="assets/project-peek-a-comment.png" alt="" />
+                <span>Peek-A-Comment</span>
+              </button>
+              <button
+                class="orbit-node"
+                type="button"
+                data-orbit-node
+                data-title="Open Proto"
+                data-tag="Python / AI coding engine"
+                data-brief="Bridges a software idea and a production-grade architectural foundation with repository context, dependency maps, and codebase-aware retrieval."
+                data-link="https://github.com/GrimNej/Open-Proto"
+                data-image="assets/project-1-new.png"
+              >
+                <img src="assets/project-1-new.png" alt="" />
+                <span>Open Proto</span>
+              </button>
+              <button
+                class="orbit-node"
+                type="button"
+                data-orbit-node
+                data-title="OrthoVerba"
+                data-tag="TypeScript / speech tooling"
+                data-brief="A browser-based voice-following teleprompter with real-time script alignment, contextual phrase highlighting, and automatic smart scrolling."
+                data-link="https://github.com/GrimNej/Project-OrthoVerba"
+                data-image="assets/project-2-new.png"
+              >
+                <img src="assets/project-2-new.png" alt="" />
+                <span>OrthoVerba</span>
+              </button>
+              <button
+                class="orbit-node"
+                type="button"
+                data-orbit-node
+                data-title="Editing Buddy"
+                data-tag="Python / Premiere workflow"
+                data-brief="A one-click screen and audio recording workflow that captures clips and stills, then imports them directly into Adobe Premiere Pro."
+                data-link="https://github.com/GrimNej/Editing-Buddy"
+                data-image="assets/project-editing-buddy.png"
+              >
+                <img src="assets/project-editing-buddy.png" alt="" />
+                <span>Editing Buddy</span>
+              </button>
+              <button
+                class="orbit-node"
+                type="button"
+                data-orbit-node
+                data-title="ServerMind"
+                data-tag="Python / semantic search"
+                data-brief="Searches through years of Discord history by meaning instead of exact keywords, turning scattered server conversations into a retrievable knowledge base."
+                data-link="https://github.com/GrimNej/ServerMind-Semantic-Search-Bot"
+                data-image="assets/project-3-new.png"
+              >
+                <img src="assets/project-3-new.png" alt="" />
+                <span>ServerMind</span>
+              </button>
+              <button
+                class="orbit-node"
+                type="button"
+                data-orbit-node
+                data-title="Adaptive Persona Bot"
+                data-tag="Python / Discord AI"
+                data-brief="A Discord bot framework that creates personality-driven bots that adapt to server energy, conversation context, and topic flow."
+                data-link="https://github.com/GrimNej/Adaptive-Persona-Discord-Ai-Bot"
+                data-image="assets/project-adaptive-persona.png"
+              >
+                <img src="assets/project-adaptive-persona.png" alt="" />
+                <span>Adaptive Persona</span>
+              </button>
             </div>
-          </article>
+          </div>
 
-          <article class="project-card reveal">
-            <img src="assets/project-1-new.png" alt="Open Proto project preview" />
-            <div class="project-content">
-              <p class="project-tag">Python / AI coding engine</p>
-              <h3>Open Proto</h3>
-              <p>
-                Bridges a software idea and a production-grade architectural
-                foundation with repository context, dependency maps, and
-                codebase-aware retrieval.
-              </p>
-              <div class="project-meta">
-                <span>Architecture graph mapping</span>
-                <span>Multi-agent integration</span>
-                <span>Context snippets</span>
-              </div>
-              <a class="text-link" href="https://github.com/GrimNej/Open-Proto" target="_blank" rel="noreferrer">
-                View repository
+          <aside class="orbit-panel" aria-live="polite">
+            <p class="project-tag" data-orbit-tag>Kotlin / Rust / MCP</p>
+            <h3 data-orbit-title>Peek-A-Comment</h3>
+            <p data-orbit-brief>
+              An on-device AI commenting assistant that watches the screen,
+              extracts text, frames context, and generates comments in your
+              personalized voice.
+            </p>
+            <div class="orbit-controls" aria-label="Project menu controls">
+              <button type="button" data-orbit-prev aria-label="Previous project">Prev</button>
+              <button type="button" data-orbit-next aria-label="Next project">Next</button>
+              <a class="text-link" href="https://github.com/GrimNej/Peek-A-Comment" target="_blank" rel="noreferrer" data-orbit-link>
+                Open project
               </a>
             </div>
-          </article>
-
-          <article class="project-card reveal">
-            <img src="assets/project-2-new.png" alt="OrthoVerba project preview" />
-            <div class="project-content">
-              <p class="project-tag">TypeScript / speech tooling</p>
-              <h3>OrthoVerba</h3>
-              <p>
-                A browser-based voice-following teleprompter for readers who need
-                real-time script alignment, contextual phrase highlighting, and
-                automatic smart scrolling.
-              </p>
-              <div class="project-meta">
-                <span>Speech-to-text alignment</span>
-                <span>Precision reading flow</span>
-                <span>Cross-device interface</span>
-              </div>
-              <a class="text-link" href="https://github.com/GrimNej/Project-OrthoVerba" target="_blank" rel="noreferrer">
-                View repository
-              </a>
-            </div>
-          </article>
-
-          <article class="project-card reveal">
-            <img src="assets/project-editing-buddy.png" alt="Editing Buddy project preview" />
-            <div class="project-content">
-              <p class="project-tag">Python / Premiere workflow</p>
-              <h3>Editing Buddy</h3>
-              <p>
-                A one-click screen and audio recording workflow that captures
-                clips and stills, then imports them directly into Adobe Premiere
-                Pro.
-              </p>
-              <div class="project-meta">
-                <span>Screen recording</span>
-                <span>Premiere auto-import</span>
-                <span>Spacebar toggle</span>
-              </div>
-              <a class="text-link" href="https://github.com/GrimNej/Editing-Buddy" target="_blank" rel="noreferrer">
-                View repository
-              </a>
-            </div>
-          </article>
-
-          <article class="project-card reveal">
-            <img src="assets/project-3-new.png" alt="ServerMind project preview" />
-            <div class="project-content">
-              <p class="project-tag">Python / semantic search</p>
-              <h3>ServerMind</h3>
-              <p>
-                Searches through years of Discord history by meaning instead of
-                exact keywords, turning scattered server conversations into a
-                retrievable knowledge base.
-              </p>
-              <div class="project-meta">
-                <span>Meaning-based search</span>
-                <span>Message history indexing</span>
-                <span>Knowledge retrieval</span>
-              </div>
-              <a class="text-link" href="https://github.com/GrimNej/ServerMind-Semantic-Search-Bot" target="_blank" rel="noreferrer">
-                View repository
-              </a>
-            </div>
-          </article>
-
-          <article class="project-card reveal">
-            <img src="assets/project-adaptive-persona.png" alt="Adaptive Persona Discord AI Bot project preview" />
-            <div class="project-content">
-              <p class="project-tag">Python / Discord AI</p>
-              <h3>Adaptive Persona Bot</h3>
-              <p>
-                A Discord bot framework that creates personality-driven bots
-                that adapt to server energy, conversation context, and topic
-                flow.
-              </p>
-              <div class="project-meta">
-                <span>Adaptive personality</span>
-                <span>Context GIFs</span>
-                <span>Multi-user tracking</span>
-              </div>
-              <a class="text-link" href="https://github.com/GrimNej/Adaptive-Persona-Discord-Ai-Bot" target="_blank" rel="noreferrer">
-                View repository
-              </a>
-            </div>
-          </article>
+          </aside>
         </div>
+
       </section>
 
       <section class="stack section-shell" id="stack">

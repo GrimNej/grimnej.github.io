@@ -1,6 +1,8 @@
 @media screen and (max-width: 1060px) {
   .hero,
   .about-layout,
+  .news-bridge,
+  .project-orbit,
   .contact {
     grid-template-columns: 1fr;
   }
@@ -39,8 +41,13 @@
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .project-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+  .project-orbit {
+    gap: 0.75rem;
+  }
+
+  .orbit-panel {
+    min-height: auto;
+    padding: clamp(1.55rem, 5vw, 2rem);
   }
 }
 
@@ -125,8 +132,16 @@
     grid-template-columns: 1fr;
   }
 
-  .project-grid {
+  .news-console {
     grid-template-columns: 1fr;
+  }
+
+  .news-console div {
+    min-height: 118px;
+  }
+
+  .orbit-stage {
+    min-height: 430px;
   }
 
   .project-content {
@@ -192,6 +207,7 @@
   }
 
   .about,
+  .signal-desk,
   .work,
   .stack,
   .principles,
@@ -211,6 +227,33 @@
 
   .stack-grid {
     grid-template-columns: 1fr;
+  }
+
+  .bridge-actions {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .orbit-stage {
+    min-height: 390px;
+  }
+
+  .orbit-panel {
+    padding: 1.35rem;
+  }
+
+  .orbit-node {
+    width: clamp(106px, 34vw, 132px);
+    min-height: 142px;
+  }
+
+  .orbit-controls {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .orbit-controls .text-link {
+    grid-column: 1 / -1;
   }
 
   .project-meta span {
