@@ -1,0 +1,304 @@
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 1280 440"
+  role="img"
+  aria-labelledby="title description"
+>
+  <title id="title">Ripple change intelligence</title>
+  <desc id="description">
+    A cinematic Ripple product banner showing an authoritative source flowing through impact
+    analysis to a verified repair.
+  </desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1280" y2="440" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#080A0B" />
+      <stop offset=".56" stop-color="#0D1011" />
+      <stop offset="1" stop-color="#111315" />
+    </linearGradient>
+    <linearGradient id="signal" x1="680" y1="92" x2="1196" y2="335" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FF735C" />
+      <stop offset=".5" stop-color="#FFC36E" />
+      <stop offset="1" stop-color="#A8FFD8" />
+    </linearGradient>
+    <radialGradient
+      id="halo"
+      cx="0"
+      cy="0"
+      r="1"
+      gradientTransform="translate(1020 218) rotate(90) scale(210 300)"
+      gradientUnits="userSpaceOnUse"
+    >
+      <stop stop-color="#FF735C" stop-opacity=".13" />
+      <stop offset="1" stop-color="#FF735C" stop-opacity="0" />
+    </radialGradient>
+    <pattern id="grid" width="32" height="32" patternUnits="userSpaceOnUse">
+      <path d="M32 0H0v32" fill="none" stroke="#FFFFFF" stroke-opacity=".035" />
+    </pattern>
+    <filter id="softGlow" x="-100%" y="-100%" width="300%" height="300%">
+      <feGaussianBlur stdDeviation="5" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+    <filter id="panelShadow" x="-20%" y="-30%" width="150%" height="170%">
+      <feDropShadow dx="0" dy="24" stdDeviation="24" flood-color="#000000" flood-opacity=".55" />
+    </filter>
+    <style>
+      .mono {
+        font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+      }
+      .sans {
+        font-family: Inter, Arial, sans-serif;
+      }
+      .signal-path {
+        stroke-dasharray: 8 10;
+        animation: dash 13s linear infinite;
+      }
+      .orbit {
+        transform-origin: 1020px 220px;
+        animation: spin 28s linear infinite;
+      }
+      .pulse {
+        animation: pulse 2.8s ease-out infinite;
+        transform-box: fill-box;
+        transform-origin: center;
+      }
+      .float-a {
+        animation: floatA 7s ease-in-out infinite;
+      }
+      .float-b {
+        animation: floatB 8s ease-in-out infinite;
+      }
+      @keyframes dash {
+        to {
+          stroke-dashoffset: -180;
+        }
+      }
+      @keyframes spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+      @keyframes pulse {
+        0%,
+        30% {
+          opacity: 0.8;
+          transform: scale(0.35);
+        }
+        80%,
+        100% {
+          opacity: 0;
+          transform: scale(1.5);
+        }
+      }
+      @keyframes floatA {
+        50% {
+          transform: translate(7px, -8px);
+        }
+      }
+      @keyframes floatB {
+        50% {
+          transform: translate(-5px, 7px);
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        * {
+          animation: none !important;
+        }
+      }
+    </style>
+  </defs>
+
+  <rect width="1280" height="440" rx="28" fill="url(#bg)" />
+  <rect
+    x="1"
+    y="1"
+    width="1278"
+    height="438"
+    rx="27"
+    fill="none"
+    stroke="#FFFFFF"
+    stroke-opacity=".13"
+    stroke-width="2"
+  />
+  <path d="M640 0v440" stroke="#FFFFFF" stroke-opacity=".055" />
+  <rect x="640" width="640" height="440" fill="url(#grid)" />
+  <rect x="700" y="0" width="580" height="440" fill="url(#halo)" />
+
+  <g transform="translate(66 58)">
+    <rect width="58" height="58" rx="16" fill="#111517" stroke="#3D4345" />
+    <circle cx="29" cy="29" r="20" fill="none" stroke="#FF735C" stroke-width="3" />
+    <circle cx="29" cy="29" r="13" fill="none" stroke="#FFC36E" stroke-width="3" />
+    <circle cx="29" cy="29" r="5" fill="#A8FFD8" filter="url(#softGlow)" />
+  </g>
+  <text
+    x="142"
+    y="96"
+    class="sans"
+    fill="#F5F2EA"
+    font-size="25"
+    font-weight="700"
+    letter-spacing="-1"
+  >
+    RIPPLE
+  </text>
+  <text x="67" y="154" class="mono" fill="#A8FFD8" font-size="10" letter-spacing="2">
+    CHANGE INTELLIGENCE / END TO END
+  </text>
+
+  <text
+    x="66"
+    y="220"
+    class="sans"
+    fill="#F5F2EA"
+    font-size="52"
+    font-weight="650"
+    letter-spacing="-2.8"
+  >
+    Know what changed.
+  </text>
+  <text
+    x="66"
+    y="274"
+    class="sans"
+    fill="#F5F2EA"
+    font-size="52"
+    font-weight="650"
+    letter-spacing="-2.8"
+  >
+    See what it affects.
+  </text>
+  <text
+    x="66"
+    y="328"
+    class="sans"
+    fill="#FF735C"
+    font-size="52"
+    font-weight="650"
+    letter-spacing="-2.8"
+  >
+    Repair it with proof.
+  </text>
+
+  <g class="mono" font-size="9" letter-spacing="1">
+    <circle cx="70" cy="379" r="4" fill="#A8FFD8" />
+    <text x="82" y="383" fill="#8F918D">EVIDENCE ATTACHED</text>
+    <circle cx="231" cy="379" r="4" fill="#FFC36E" />
+    <text x="243" y="383" fill="#8F918D">HUMANS DECIDE</text>
+    <circle cx="370" cy="379" r="4" fill="#FF735C" />
+    <text x="382" y="383" fill="#8F918D">REPAIRS VERIFIED</text>
+  </g>
+
+  <g class="orbit" fill="none" stroke="#FFFFFF" stroke-opacity=".08">
+    <ellipse cx="1020" cy="220" rx="224" ry="168" />
+    <ellipse cx="1020" cy="220" rx="168" ry="124" />
+    <ellipse cx="1020" cy="220" rx="110" ry="82" />
+  </g>
+
+  <path
+    id="flowPath"
+    d="M704 222C790 135 842 296 924 207s135-97 270 8"
+    fill="none"
+    stroke="url(#signal)"
+    stroke-width="2"
+    class="signal-path"
+    filter="url(#softGlow)"
+  />
+  <circle r="6" fill="#FF735C" filter="url(#softGlow)">
+    <animateMotion dur="5.6s" repeatCount="indefinite"><mpath href="#flowPath" /></animateMotion>
+  </circle>
+  <circle r="4" fill="#A8FFD8" filter="url(#softGlow)">
+    <animateMotion dur="5.6s" begin="-2.8s" repeatCount="indefinite">
+      <mpath href="#flowPath" />
+    </animateMotion>
+  </circle>
+
+  <g filter="url(#panelShadow)">
+    <g transform="translate(722 169)">
+      <rect width="154" height="105" rx="16" fill="#15191A" stroke="#FFFFFF" stroke-opacity=".18" />
+      <circle cx="26" cy="28" r="10" fill="#162A23" stroke="#A8FFD8" stroke-opacity=".7" />
+      <circle cx="26" cy="28" r="3" fill="#A8FFD8" />
+      <circle
+        cx="26"
+        cy="28"
+        r="16"
+        fill="none"
+        stroke="#A8FFD8"
+        stroke-opacity=".28"
+        class="pulse"
+      />
+      <text x="45" y="25" class="mono" fill="#717571" font-size="7" letter-spacing="1">SOURCE</text>
+      <text x="45" y="39" class="sans" fill="#F5F2EA" font-size="11" font-weight="700">
+        Policy update
+      </text>
+      <text x="19" y="72" class="sans" fill="#FF8A76" font-size="13" font-weight="700">3.10</text>
+      <path d="M55 68h31" stroke="#FFC36E" stroke-width="1.5" />
+      <path d="m81 64 5 4-5 4" fill="none" stroke="#FFC36E" stroke-width="1.5" />
+      <text x="98" y="72" class="sans" fill="#A8FFD8" font-size="13" font-weight="700">3.12</text>
+      <text x="19" y="91" class="mono" fill="#666A67" font-size="6">CAPTURED 09:42</text>
+    </g>
+
+    <g transform="translate(900 122)">
+      <rect width="177" height="194" rx="20" fill="#15191A" stroke="#FF735C" stroke-opacity=".48" />
+      <text x="20" y="29" class="mono" fill="#FF735C" font-size="7" letter-spacing="1.2">
+        MATERIAL CHANGE
+      </text>
+      <text x="20" y="61" class="sans" fill="#F5F2EA" font-size="24" font-weight="650">
+        12 assets
+      </text>
+      <text x="20" y="80" class="sans" fill="#888B87" font-size="9">across 4 collections</text>
+      <path d="M20 105h137" stroke="#FFFFFF" stroke-opacity=".12" />
+      <g class="mono" font-size="7">
+        <circle cx="28" cy="129" r="5" fill="#FF735C" />
+        <text x="42" y="132" fill="#C4C4BE">6 runbooks</text>
+        <circle cx="28" cy="151" r="5" fill="#FFC36E" />
+        <text x="42" y="154" fill="#C4C4BE">3 policies</text>
+        <circle cx="28" cy="173" r="5" fill="#A8FFD8" />
+        <text x="42" y="176" fill="#C4C4BE">3 workflows</text>
+      </g>
+    </g>
+
+    <g transform="translate(1100 171)">
+      <rect width="145" height="111" rx="16" fill="#15191A" stroke="#A8FFD8" stroke-opacity=".42" />
+      <circle cx="27" cy="29" r="12" fill="#173026" stroke="#A8FFD8" stroke-opacity=".55" />
+      <path
+        d="m21 29 4 4 8-9"
+        fill="none"
+        stroke="#A8FFD8"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+      <text x="48" y="26" class="mono" fill="#717571" font-size="7" letter-spacing="1">
+        VERIFIED
+      </text>
+      <text x="48" y="41" class="sans" fill="#F5F2EA" font-size="11" font-weight="700">
+        Repair applied
+      </text>
+      <path d="M18 59h109" stroke="#FFFFFF" stroke-opacity=".11" />
+      <text x="18" y="79" class="mono" fill="#A8FFD8" font-size="7">HASH + AUDIT</text>
+      <text x="18" y="95" class="mono" fill="#676B68" font-size="6">DETERMINISTIC CHECKS PASS</text>
+    </g>
+  </g>
+
+  <g class="float-a" transform="translate(1052 57)">
+    <rect width="146" height="46" rx="12" fill="#171B1D" stroke="#FFFFFF" stroke-opacity=".15" />
+    <circle cx="21" cy="23" r="4" fill="#A8FFD8" />
+    <text x="35" y="20" class="mono" fill="#737774" font-size="6" letter-spacing=".7">
+      14 SOURCES
+    </text>
+    <text x="35" y="32" class="sans" fill="#E6E4DD" font-size="8" font-weight="700">
+      All systems healthy
+    </text>
+  </g>
+  <g class="float-b" transform="translate(780 321)">
+    <rect width="168" height="48" rx="12" fill="#171B1D" stroke="#FFFFFF" stroke-opacity=".15" />
+    <text x="18" y="20" class="mono" fill="#737774" font-size="6" letter-spacing=".7">
+      DECISION CONTROL
+    </text>
+    <text x="18" y="34" class="sans" fill="#E6E4DD" font-size="8" font-weight="700">
+      Human approval required
+    </text>
+  </g>
+</svg>

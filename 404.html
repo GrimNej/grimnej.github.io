@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Page not found · GrimNej</title>
+    <meta name="robots" content="noindex" />
+    <meta name="theme-color" content="#06070b" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="/assets/css/main.css" />
+    <style>
+      .lost {
+        position: relative;
+        z-index: 2;
+        display: grid;
+        place-items: center;
+        min-height: 100svh;
+        padding: 48px var(--gutter);
+        text-align: center;
+      }
+
+      .lost__inner {
+        display: grid;
+        justify-items: center;
+        gap: 22px;
+        max-width: 640px;
+      }
+
+      .lost__code {
+        font-size: clamp(7rem, 30vw, 16rem);
+        font-weight: 860;
+        font-stretch: 120%;
+        letter-spacing: -0.06em;
+        line-height: 0.85;
+        color: transparent;
+        -webkit-text-stroke: 1.5px rgba(206, 214, 255, 0.4);
+      }
+
+      .lost__code span {
+        color: var(--ember);
+        -webkit-text-stroke: 0;
+      }
+
+      .lost h1 {
+        font-size: clamp(1.8rem, 1.2rem + 2.4vw, 3rem);
+        font-weight: 780;
+        font-stretch: 110%;
+        letter-spacing: -0.03em;
+        line-height: 1.05;
+      }
+
+      .lost p {
+        color: var(--ink-2);
+      }
+
+      .lost__actions {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 12px;
+        margin-top: 8px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="atmosphere" aria-hidden="true"></div>
+    <main class="lost">
+      <div class="lost__inner">
+        <p class="lost__code" aria-hidden="true">4<span>0</span>4</p>
+        <h1>Nothing lives at this address.</h1>
+        <p>The page may have moved during the redesign. Everything is on the home page, and I'm one email away.</p>
+        <div class="lost__actions">
+          <a class="btn btn--ember" href="/">Back to the portfolio</a>
+          <a class="btn btn--ghost" href="mailto:grim98413@gmail.com">grim98413@gmail.com</a>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>
