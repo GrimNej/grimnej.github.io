@@ -1,6 +1,33 @@
 {
-  "generatedAt": "2026-10-21T07:18:55.298Z",
+  "generatedAt": "2026-10-21T14:32:44.941Z",
   "repos": [
+    {
+      "name": "Portfolio-Design-Skill",
+      "description": "A Claude Code skill that interviews you and builds an award-style portfolio site: WebGL particle galaxy, ASCII portrait lens, kinetic name, chat mascot, physics ball pit, live GitHub archive. Browser-tested, then shipped.",
+      "url": "https://github.com/GrimNej/Portfolio-Design-Skill",
+      "language": "JavaScript",
+      "fork": false,
+      "pushedAt": "2026-10-21T14:05:10Z",
+      "topics": [
+        "claude-code",
+        "claude-skill",
+        "github-pages",
+        "gsap",
+        "playwright",
+        "portfolio",
+        "portfolio-website",
+        "webgl"
+      ]
+    },
+    {
+      "name": "grimnej.github.io",
+      "description": null,
+      "url": "https://github.com/GrimNej/grimnej.github.io",
+      "language": "JavaScript",
+      "fork": false,
+      "pushedAt": "2026-10-21T13:33:42Z",
+      "topics": []
+    },
     {
       "name": "effectcraft",
       "description": "EffectCraft: An open-source motion graphics and compositing tool written by scratch in pure Rust",
@@ -114,15 +141,6 @@
       "topics": [
         "hackathon"
       ]
-    },
-    {
-      "name": "grimnej.github.io",
-      "description": null,
-      "url": "https://github.com/GrimNej/grimnej.github.io",
-      "language": "CSS",
-      "fork": false,
-      "pushedAt": "2026-07-05T18:56:15Z",
-      "topics": []
     },
     {
       "name": "GrimNej",

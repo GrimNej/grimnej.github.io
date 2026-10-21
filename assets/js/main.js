@@ -1,9 +1,9 @@
-import { initField } from "./field.js?v=20261021b";
-import { initPortrait } from "./portrait.js?v=20261021b";
-import { initCursor } from "./cursor.js?v=20261021b";
-import { initGitHub } from "./github.js?v=20261021b";
-import { initGrim } from "./mascot.js?v=20261021b";
-import { initName } from "./name.js?v=20261021b";
+import { initField } from "./field.js?v=20261021c";
+import { initPortrait } from "./portrait.js?v=20261021c";
+import { initCursor } from "./cursor.js?v=20261021c";
+import { initGitHub } from "./github.js?v=20261021c";
+import { initGrim } from "./mascot.js?v=20261021c";
+import { initName } from "./name.js?v=20261021c";
 
 window.__booted = true;
 
@@ -710,7 +710,7 @@ function initFooterWord() {
     async ([e]) => {
       if (!e.isIntersecting) return;
       io.disconnect();
-      const { initPit } = await import("./pit.js?v=20261021b");
+      const { initPit } = await import("./pit.js?v=20261021c");
       initPit(root, { reduced });
     },
     { rootMargin: "600px 0px" }
