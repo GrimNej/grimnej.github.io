@@ -1,0 +1,141 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 460" role="img" aria-labelledby="title desc">
+  <title id="title">LM-Comment, learn to write thoughtful replies</title>
+  <desc id="desc">A social post is selected on Android, read locally, and turned into editable reply examples that the learner rewrites in their own voice.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1280" y2="460" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0C100D"/>
+      <stop offset=".58" stop-color="#101411"/>
+      <stop offset="1" stop-color="#171C18"/>
+    </linearGradient>
+    <linearGradient id="signalLine" x1="738" y1="230" x2="1208" y2="230" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#B9E84A" stop-opacity=".12"/>
+      <stop offset=".5" stop-color="#B9E84A"/>
+      <stop offset="1" stop-color="#E96D4C"/>
+    </linearGradient>
+    <radialGradient id="limeGlow" cx="0" cy="0" r="1" gradientTransform="translate(1010 230) rotate(90) scale(230 320)" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#B9E84A" stop-opacity=".12"/>
+      <stop offset="1" stop-color="#B9E84A" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="grid" width="28" height="28" patternUnits="userSpaceOnUse">
+      <path d="M28 0H0v28" fill="none" stroke="#F4F0E6" stroke-opacity=".035"/>
+    </pattern>
+    <filter id="glow" x="-120%" y="-120%" width="340%" height="340%">
+      <feGaussianBlur stdDeviation="5" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="shadow" x="-35%" y="-45%" width="180%" height="200%">
+      <feDropShadow dx="0" dy="18" stdDeviation="20" flood-color="#000000" flood-opacity=".48"/>
+    </filter>
+    <style>
+      .sans { font-family: Inter, "Segoe UI", Arial, sans-serif; }
+      .mono { font-family: "Space Mono", Consolas, monospace; }
+      .corner {
+        stroke-dasharray: 36;
+        animation: draw 2.2s cubic-bezier(.22, 1, .36, 1) forwards;
+      }
+      .c2 { animation-delay: .12s; }
+      .c3 { animation-delay: .24s; }
+      .c4 { animation-delay: .36s; }
+      .flow { stroke-dasharray: 7 10; animation: travel 10s linear infinite; }
+      .float-a { animation: float 7s ease-in-out infinite; }
+      .float-b { animation: float 8.5s -2s ease-in-out infinite; }
+      .pulse {
+        animation: pulse 3.1s ease-out infinite;
+        transform-box: fill-box;
+        transform-origin: center;
+      }
+      .caret { animation: blink 1.1s steps(2, jump-none) infinite; }
+      @keyframes draw { from { stroke-dashoffset: 36; } to { stroke-dashoffset: 0; } }
+      @keyframes travel { to { stroke-dashoffset: -170; } }
+      @keyframes float { 50% { translate: 0 -7px; } }
+      @keyframes pulse {
+        0%, 30% { opacity: .55; transform: scale(.65); }
+        85%, 100% { opacity: 0; transform: scale(1.8); }
+      }
+      @keyframes blink { 50% { opacity: 0; } }
+      @media (prefers-reduced-motion: reduce) {
+        * { animation: none !important; }
+      }
+    </style>
+  </defs>
+
+  <rect width="1280" height="460" rx="28" fill="url(#bg)"/>
+  <rect x="1" y="1" width="1278" height="458" rx="27" fill="none" stroke="#F4F0E6" stroke-opacity=".17" stroke-width="2"/>
+  <rect x="644" width="636" height="460" fill="url(#grid)"/>
+  <rect x="664" width="616" height="460" fill="url(#limeGlow)"/>
+  <path d="M644 0v460" stroke="#F4F0E6" stroke-opacity=".07"/>
+
+  <g transform="translate(56 44)">
+    <rect width="64" height="64" rx="18" fill="#171C18" stroke="#374038"/>
+    <g fill="none" stroke="#F4F0E6" stroke-linecap="round" stroke-linejoin="round" stroke-width="4">
+      <path d="M29 19H19v10"/><path d="M35 19h10v10"/>
+      <path d="M29 45H19V35"/><path d="M35 45h10V35"/>
+    </g>
+    <circle cx="32" cy="32" r="6" fill="#B9E84A"/>
+  </g>
+  <text x="138" y="83" class="sans" fill="#F4F0E6" font-size="27" font-weight="800" letter-spacing="-1">LM-COMMENT</text>
+  <text x="138" y="103" class="mono" fill="#899188" font-size="8" letter-spacing="1.5">ANDROID WRITING PRACTICE</text>
+
+  <text x="56" y="176" class="mono" fill="#B9E84A" font-size="10" letter-spacing="2">FROM SCREEN CONTEXT TO WORDS WORTH SENDING</text>
+  <text x="56" y="236" class="sans" fill="#F4F0E6" font-size="49" font-weight="760" letter-spacing="-2.5">See how a good reply works.</text>
+  <text x="56" y="294" class="sans" fill="#B9E84A" font-size="52" font-weight="760" letter-spacing="-2.7">Rewrite it in your voice.</text>
+  <text x="56" y="337" class="sans" fill="#C9CBC1" font-size="16">Capture context locally. Compare examples. Make the final words yours.</text>
+
+  <g class="mono" font-size="8" letter-spacing="1">
+    <circle cx="60" cy="391" r="4" fill="#B9E84A"/><text x="73" y="395" fill="#AEB4AA">ON-DEVICE OCR</text>
+    <circle cx="200" cy="391" r="4" fill="#E96D4C"/><text x="213" y="395" fill="#AEB4AA">EDITABLE REPLIES</text>
+    <circle cx="368" cy="391" r="4" fill="#F4F0E6"/><text x="381" y="395" fill="#AEB4AA">NO AUTO-POSTING</text>
+  </g>
+
+  <path id="replyPath" d="M744 230C817 156 873 300 948 225s154-81 269 5" fill="none" stroke="url(#signalLine)" stroke-width="2.5" class="flow"/>
+  <circle r="5" fill="#B9E84A" filter="url(#glow)">
+    <animateMotion dur="5.8s" repeatCount="indefinite"><mpath href="#replyPath"/></animateMotion>
+  </circle>
+  <circle r="4" fill="#E96D4C" filter="url(#glow)">
+    <animateMotion dur="5.8s" begin="-2.9s" repeatCount="indefinite"><mpath href="#replyPath"/></animateMotion>
+  </circle>
+
+  <g filter="url(#shadow)">
+    <g class="float-a" transform="translate(685 91)">
+      <rect width="204" height="278" rx="22" fill="#F4F0E6" stroke="#374038" stroke-width="2"/>
+      <rect x="18" y="18" width="38" height="38" rx="19" fill="#E96D4C"/>
+      <text x="37" y="42" class="sans" fill="#101411" font-size="11" font-weight="800" text-anchor="middle">MR</text>
+      <text x="68" y="32" class="sans" fill="#101411" font-size="11" font-weight="750">Maya Rai</text>
+      <text x="68" y="49" class="sans" fill="#646C63" font-size="7">Student runner</text>
+      <rect x="18" y="78" width="168" height="70" rx="9" fill="#B9E84A"/>
+      <text x="32" y="118" class="sans" fill="#101411" font-size="28" font-weight="850">10K</text>
+      <text x="18" y="179" class="sans" fill="#101411" font-size="13" font-weight="800">First 10K complete.</text>
+      <rect x="18" y="194" width="160" height="6" rx="3" fill="#9CA498"/>
+      <rect x="18" y="208" width="148" height="6" rx="3" fill="#B2B8AE"/>
+      <rect x="18" y="222" width="122" height="6" rx="3" fill="#C4C8C0"/>
+      <rect x="18" y="248" width="62" height="8" rx="4" fill="#D9DDD4"/>
+    </g>
+
+    <g transform="translate(731 160)" fill="none" stroke="#101411" stroke-linecap="round" stroke-linejoin="round" stroke-width="6">
+      <path class="corner" d="M36 0H0v36"/>
+      <path class="corner c2" d="M86 0h36v36"/>
+      <path class="corner c3" d="M36 122H0V86"/>
+      <path class="corner c4" d="M86 122h36V86"/>
+      <circle class="pulse" cx="61" cy="61" r="15" stroke="#B9E84A" stroke-width="3"/>
+      <circle cx="61" cy="61" r="10" fill="#B9E84A" stroke="none"/>
+    </g>
+
+    <g class="float-b" transform="translate(966 113)">
+      <rect x="28" y="24" width="218" height="230" rx="20" fill="#242A25" stroke="#4A544B"/>
+      <rect x="14" y="12" width="218" height="230" rx="20" fill="#1A201B" stroke="#4A544B"/>
+      <rect width="218" height="230" rx="20" fill="#F4F0E6" stroke="#101411" stroke-width="2"/>
+      <text x="18" y="30" class="mono" fill="#646C63" font-size="7" letter-spacing="1">YOUR REPLY</text>
+      <text x="18" y="61" class="sans" fill="#101411" font-size="14" font-weight="780">Your persistence in the rain</text>
+      <text x="18" y="82" class="sans" fill="#101411" font-size="14" font-weight="780">is inspiring. Congratulations</text>
+      <text x="18" y="103" class="sans" fill="#101411" font-size="14" font-weight="780">on your first 10K.</text>
+      <rect class="caret" x="170" y="89" width="2" height="17" rx="1" fill="#E96D4C"/>
+      <path d="M18 128h182" stroke="#D5D9D1"/>
+      <rect x="18" y="150" width="78" height="34" rx="7" fill="#FFFFFF" stroke="#9DA59A"/>
+      <text x="57" y="172" class="sans" fill="#101411" font-size="9" font-weight="750" text-anchor="middle">EDIT</text>
+      <rect x="106" y="150" width="94" height="34" rx="7" fill="#B9E84A" stroke="#101411"/>
+      <text x="153" y="172" class="sans" fill="#101411" font-size="9" font-weight="800" text-anchor="middle">COPY</text>
+      <circle cx="29" cy="207" r="5" fill="#B9E84A"/>
+      <text x="43" y="211" class="mono" fill="#646C63" font-size="7">YOU DECIDE WHAT TO POST</text>
+    </g>
+  </g>
+</svg>

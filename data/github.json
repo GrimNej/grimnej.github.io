@@ -1,0 +1,452 @@
+{
+  "generatedAt": "2026-10-21T07:18:55.298Z",
+  "repos": [
+    {
+      "name": "effectcraft",
+      "description": "EffectCraft: An open-source motion graphics and compositing tool written by scratch in pure Rust",
+      "url": "https://github.com/GrimNej/effectcraft",
+      "language": null,
+      "fork": true,
+      "pushedAt": "2026-10-18T18:36:11Z",
+      "topics": []
+    },
+    {
+      "name": "herk-edit-kit",
+      "description": "Herk Edit Kit by Nate Herk: edit videos, reels, and YouTube Shorts with Codex or Claude Code. 15 skills, transcript-driven cuts, storytelling, 406 motion-graphics cards, and HyperFrames templates.",
+      "url": "https://github.com/GrimNej/herk-edit-kit",
+      "language": null,
+      "fork": true,
+      "pushedAt": "2026-10-14T12:51:12Z",
+      "topics": []
+    },
+    {
+      "name": "Project-Consera",
+      "description": null,
+      "url": "https://github.com/GrimNej/Project-Consera",
+      "language": "Python",
+      "fork": false,
+      "pushedAt": "2026-08-22T13:42:22Z",
+      "topics": []
+    },
+    {
+      "name": "GhostAudience",
+      "description": null,
+      "url": "https://github.com/GrimNej/GhostAudience",
+      "language": "TypeScript",
+      "fork": false,
+      "pushedAt": "2026-08-11T10:18:08Z",
+      "topics": []
+    },
+    {
+      "name": "GOSIM_SHENZHEN_2026",
+      "description": null,
+      "url": "https://github.com/GrimNej/GOSIM_SHENZHEN_2026",
+      "language": "HTML",
+      "fork": false,
+      "pushedAt": "2026-08-04T04:46:28Z",
+      "topics": []
+    },
+    {
+      "name": "LM-Comment",
+      "description": "Learn to write thoughtful comments from any Android screen with private OCR, editable AI examples, and no automatic posting.",
+      "url": "https://github.com/GrimNej/LM-Comment",
+      "language": "Kotlin",
+      "fork": false,
+      "pushedAt": "2026-07-29T19:05:35Z",
+      "topics": [
+        "ai-education",
+        "android",
+        "expo",
+        "groq",
+        "hackathon",
+        "jetpack-compose",
+        "kotlin",
+        "ml-kit",
+        "prometheus-ai-challenge",
+        "react-native",
+        "typescript",
+        "writing-assistant"
+      ]
+    },
+    {
+      "name": "Ripple",
+      "description": null,
+      "url": "https://github.com/GrimNej/Ripple",
+      "language": "TypeScript",
+      "fork": false,
+      "pushedAt": "2026-07-23T03:10:06Z",
+      "topics": []
+    },
+    {
+      "name": "Conseraa",
+      "description": null,
+      "url": "https://github.com/GrimNej/Conseraa",
+      "language": "TypeScript",
+      "fork": false,
+      "pushedAt": "2026-07-22T09:32:19Z",
+      "topics": []
+    },
+    {
+      "name": "OrthoVerba",
+      "description": null,
+      "url": "https://github.com/GrimNej/OrthoVerba",
+      "language": "TypeScript",
+      "fork": false,
+      "pushedAt": "2026-07-20T17:09:58Z",
+      "topics": []
+    },
+    {
+      "name": "ripple-source-lab",
+      "description": "Live source policy and downstream knowledge fixtures for Ripple",
+      "url": "https://github.com/GrimNej/ripple-source-lab",
+      "language": null,
+      "fork": false,
+      "pushedAt": "2026-07-20T12:42:12Z",
+      "topics": []
+    },
+    {
+      "name": "CaptionMan",
+      "description": "CaptionMan is an evidence-grounded video captioning system for AMD Developer Hackathon ACT II Track 2. It creates requested caption styles by building a structured evidence file, generating candidate captions, auditing them with deterministic and model-based checks, repairing weak candidates, and exporting schema-ready results.",
+      "url": "https://github.com/GrimNej/CaptionMan",
+      "language": "Python",
+      "fork": false,
+      "pushedAt": "2026-07-12T03:46:55Z",
+      "topics": [
+        "hackathon"
+      ]
+    },
+    {
+      "name": "grimnej.github.io",
+      "description": null,
+      "url": "https://github.com/GrimNej/grimnej.github.io",
+      "language": "CSS",
+      "fork": false,
+      "pushedAt": "2026-07-05T18:56:15Z",
+      "topics": []
+    },
+    {
+      "name": "GrimNej",
+      "description": null,
+      "url": "https://github.com/GrimNej/GrimNej",
+      "language": null,
+      "fork": false,
+      "pushedAt": "2026-06-17T13:57:55Z",
+      "topics": []
+    },
+    {
+      "name": "Peek-A-Comment",
+      "description": "A floating overlay that watches your screen, pulls out the text you care about, and hands it to your favourite LLM with your own voice attached, so you can drop a comment without copy-pasting into another app.",
+      "url": "https://github.com/GrimNej/Peek-A-Comment",
+      "language": "Kotlin",
+      "fork": false,
+      "pushedAt": "2026-06-17T06:44:16Z",
+      "topics": []
+    },
+    {
+      "name": "Open-Proto",
+      "description": "Open Proto bridges the gap between a software idea and a production-grade architectural foundation.",
+      "url": "https://github.com/GrimNej/Open-Proto",
+      "language": "Python",
+      "fork": false,
+      "pushedAt": "2026-05-19T05:00:44Z",
+      "topics": []
+    },
+    {
+      "name": "Project-OrthoVerba",
+      "description": "OrthoVerba is a browser-based voice-following teleprompter built for anyone who reads out loud and has ever lost their place mid-sentence.",
+      "url": "https://github.com/GrimNej/Project-OrthoVerba",
+      "language": "TypeScript",
+      "fork": false,
+      "pushedAt": "2026-05-18T13:22:33Z",
+      "topics": []
+    },
+    {
+      "name": "Read-Anchor",
+      "description": "Instantly search the meaning of any word or phrase on the web without leaving your tab.",
+      "url": "https://github.com/GrimNej/Read-Anchor",
+      "language": "JavaScript",
+      "fork": false,
+      "pushedAt": "2026-05-18T12:30:24Z",
+      "topics": []
+    },
+    {
+      "name": "Editing-Buddy",
+      "description": "The Ultimate \"In-Timeline\" Screen Recording Workflow for Adobe Premiere Pro.",
+      "url": "https://github.com/GrimNej/Editing-Buddy",
+      "language": "Python",
+      "fork": false,
+      "pushedAt": "2026-05-18T11:57:12Z",
+      "topics": []
+    },
+    {
+      "name": "LexiPulse",
+      "description": null,
+      "url": "https://github.com/GrimNej/LexiPulse",
+      "language": "Python",
+      "fork": false,
+      "pushedAt": "2026-05-11T12:40:30Z",
+      "topics": []
+    },
+    {
+      "name": "mofaclaw",
+      "description": "MoFA's OpenClaw",
+      "url": "https://github.com/GrimNej/mofaclaw",
+      "language": "Rust",
+      "fork": true,
+      "pushedAt": "2026-04-17T03:50:24Z",
+      "topics": []
+    },
+    {
+      "name": "mofa-skills",
+      "description": null,
+      "url": "https://github.com/GrimNej/mofa-skills",
+      "language": null,
+      "fork": true,
+      "pushedAt": "2026-04-16T03:51:39Z",
+      "topics": []
+    },
+    {
+      "name": "Idea-5-Architecture",
+      "description": null,
+      "url": "https://github.com/GrimNej/Idea-5-Architecture",
+      "language": null,
+      "fork": false,
+      "pushedAt": "2026-03-26T16:24:40Z",
+      "topics": []
+    },
+    {
+      "name": "MoFA-Effect-Architecture",
+      "description": null,
+      "url": "https://github.com/GrimNej/MoFA-Effect-Architecture",
+      "language": null,
+      "fork": false,
+      "pushedAt": "2026-03-23T17:47:43Z",
+      "topics": []
+    },
+    {
+      "name": "Internal-Stuff",
+      "description": null,
+      "url": "https://github.com/GrimNej/Internal-Stuff",
+      "language": null,
+      "fork": false,
+      "pushedAt": "2026-03-20T16:32:08Z",
+      "topics": []
+    },
+    {
+      "name": "Internal-Project-1",
+      "description": null,
+      "url": "https://github.com/GrimNej/Internal-Project-1",
+      "language": "Python",
+      "fork": false,
+      "pushedAt": "2026-03-14T11:50:27Z",
+      "topics": []
+    },
+    {
+      "name": "mofa",
+      "description": "MoFA - Modular Framework for Agents. Modular, Compositional and Programmable.",
+      "url": "https://github.com/GrimNej/mofa",
+      "language": "Rust",
+      "fork": true,
+      "pushedAt": "2026-03-14T11:42:24Z",
+      "topics": []
+    },
+    {
+      "name": "videolizer",
+      "description": null,
+      "url": "https://github.com/GrimNej/videolizer",
+      "language": "Python",
+      "fork": false,
+      "pushedAt": "2026-03-07T16:30:56Z",
+      "topics": []
+    },
+    {
+      "name": "learning_git_advanced",
+      "description": null,
+      "url": "https://github.com/GrimNej/learning_git_advanced",
+      "language": "Python",
+      "fork": false,
+      "pushedAt": "2026-03-01T07:10:38Z",
+      "topics": []
+    },
+    {
+      "name": "mofa-studio",
+      "description": null,
+      "url": "https://github.com/GrimNej/mofa-studio",
+      "language": null,
+      "fork": true,
+      "pushedAt": "2026-03-01T06:06:34Z",
+      "topics": []
+    },
+    {
+      "name": "makepad-chart",
+      "description": "makepad chart ",
+      "url": "https://github.com/GrimNej/makepad-chart",
+      "language": null,
+      "fork": true,
+      "pushedAt": "2026-02-21T06:55:49Z",
+      "topics": []
+    },
+    {
+      "name": "mofa-local-llm",
+      "description": null,
+      "url": "https://github.com/GrimNej/mofa-local-llm",
+      "language": null,
+      "fork": true,
+      "pushedAt": "2026-02-19T17:03:39Z",
+      "topics": []
+    },
+    {
+      "name": "GrimNej-Porfolio",
+      "description": null,
+      "url": "https://github.com/GrimNej/GrimNej-Porfolio",
+      "language": "HTML",
+      "fork": false,
+      "pushedAt": "2026-02-19T06:17:50Z",
+      "topics": []
+    },
+    {
+      "name": "JobSpy",
+      "description": "Jobs scraper library for LinkedIn, Indeed, Glassdoor, Google, ZipRecruiter & more",
+      "url": "https://github.com/GrimNej/JobSpy",
+      "language": null,
+      "fork": true,
+      "pushedAt": "2026-02-18T19:39:52Z",
+      "topics": []
+    },
+    {
+      "name": "LLM-Integrated-MCQ-Quiz-Game",
+      "description": null,
+      "url": "https://github.com/GrimNej/LLM-Integrated-MCQ-Quiz-Game",
+      "language": "HTML",
+      "fork": false,
+      "pushedAt": "2026-02-18T11:52:15Z",
+      "topics": []
+    },
+    {
+      "name": "hiero-sdk-swift",
+      "description": "A Swift SDK for Hiero: A Swift toolkit for creating, updating, and interacting with on-ledger assets and smart contracts on Hedera and other Hiero networks",
+      "url": "https://github.com/GrimNej/hiero-sdk-swift",
+      "language": null,
+      "fork": true,
+      "pushedAt": "2026-02-18T05:42:17Z",
+      "topics": []
+    },
+    {
+      "name": "hiero-sdk-js",
+      "description": "A JavaScript/TypeScript SDK for Hiero: A Javascript toolkit for creating, updating, and interacting with on-ledger assets and smart contracts on Hedera and other Hiero networks",
+      "url": "https://github.com/GrimNej/hiero-sdk-js",
+      "language": null,
+      "fork": true,
+      "pushedAt": "2026-02-18T03:54:59Z",
+      "topics": []
+    },
+    {
+      "name": "Medical-ChatBot-with-Dual-AI-Pipeline",
+      "description": null,
+      "url": "https://github.com/GrimNej/Medical-ChatBot-with-Dual-AI-Pipeline",
+      "language": "Jupyter Notebook",
+      "fork": false,
+      "pushedAt": "2026-02-17T16:22:22Z",
+      "topics": []
+    },
+    {
+      "name": "pyrefly",
+      "description": "A fast type checker and language server for Python",
+      "url": "https://github.com/GrimNej/pyrefly",
+      "language": null,
+      "fork": true,
+      "pushedAt": "2026-02-14T09:07:18Z",
+      "topics": []
+    },
+    {
+      "name": "kana-dojo",
+      "description": "Aesthetic, minimalist platform for learning Japanese inspired by Duolingo and Monkeytype, built with Next.js and powered by Vercel. Beginner-friendly with plenty of good first issues - all contributions are welcome!",
+      "url": "https://github.com/GrimNej/kana-dojo",
+      "language": null,
+      "fork": true,
+      "pushedAt": "2026-02-14T06:22:30Z",
+      "topics": []
+    },
+    {
+      "name": "cognee",
+      "description": "Knowledge Engine for AI Agent Memory in 6 lines of code",
+      "url": "https://github.com/GrimNej/cognee",
+      "language": null,
+      "fork": true,
+      "pushedAt": "2026-02-13T06:25:38Z",
+      "topics": []
+    },
+    {
+      "name": "ServerMind-Semantic-Search-Bot",
+      "description": "A tool that helps search through years of Discord messages and actually find what you're looking for.",
+      "url": "https://github.com/GrimNej/ServerMind-Semantic-Search-Bot",
+      "language": "Python",
+      "fork": false,
+      "pushedAt": "2026-02-10T11:18:38Z",
+      "topics": []
+    },
+    {
+      "name": "Adaptive-Persona-Discord-Ai-Bot",
+      "description": "A Discord bot framework that creates bots with actual personality that adapt to your server's vibe.",
+      "url": "https://github.com/GrimNej/Adaptive-Persona-Discord-Ai-Bot",
+      "language": "Python",
+      "fork": false,
+      "pushedAt": "2026-02-10T11:12:54Z",
+      "topics": []
+    },
+    {
+      "name": "openvino",
+      "description": "OpenVINO™ is an open source toolkit for optimizing and deploying AI inference",
+      "url": "https://github.com/GrimNej/openvino",
+      "language": null,
+      "fork": true,
+      "pushedAt": "2026-02-06T03:03:19Z",
+      "topics": []
+    },
+    {
+      "name": "Ginej-Diken-Collaboration-",
+      "description": null,
+      "url": "https://github.com/GrimNej/Ginej-Diken-Collaboration-",
+      "language": "HTML",
+      "fork": false,
+      "pushedAt": "2026-02-01T10:08:44Z",
+      "topics": []
+    },
+    {
+      "name": "makepad-d3",
+      "description": null,
+      "url": "https://github.com/GrimNej/makepad-d3",
+      "language": null,
+      "fork": true,
+      "pushedAt": "2026-01-25T00:56:08Z",
+      "topics": []
+    },
+    {
+      "name": "Generative-Ai",
+      "description": "Learning about how to and where to implement Generative Ai",
+      "url": "https://github.com/GrimNej/Generative-Ai",
+      "language": "HTML",
+      "fork": false,
+      "pushedAt": "2026-01-09T12:39:43Z",
+      "topics": []
+    },
+    {
+      "name": "Clip-Forge",
+      "description": null,
+      "url": "https://github.com/GrimNej/Clip-Forge",
+      "language": "Python",
+      "fork": false,
+      "pushedAt": "2025-12-23T17:41:22Z",
+      "topics": []
+    },
+    {
+      "name": "chatterbox",
+      "description": "SoTA open-source TTS",
+      "url": "https://github.com/GrimNej/chatterbox",
+      "language": null,
+      "fork": true,
+      "pushedAt": "2025-12-16T17:46:14Z",
+      "topics": []
+    }
+  ]
+}
