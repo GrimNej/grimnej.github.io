@@ -13,7 +13,7 @@ const LINES = {
   hello: { text: "yo, i'm grim. Ginej's ghost. tap me, i know everything here." },
   build: { text: "agentic AI is his whole thing. tap me if that sounds like gibberish.", topic: "agentic" },
   work: { text: "my pick is Ghost Audience. tap me for the tour.", topic: "work" },
-  archive: { text: "the full archive. updates itself, no cap." },
+  archive: { text: "the rest of the pile. updates itself, no cap." },
   stack: { text: "certified ball knowledge. grab one and throw it.", topic: "stack" },
   contact: { text: "this is the part where you say hi.", topic: "contact" },
   footer: { text: "that's the whole site. now go say hi.", topic: "contact" },
