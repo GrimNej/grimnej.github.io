@@ -3,7 +3,7 @@
 // brush past them with the pointer. A small custom 2D engine (gravity, circle
 // collisions, rolling) keeps this dependency-free.
 
-import { TOOLS } from "./tools.js";
+import { TOOLS } from "./tools.js?v=20261021b";
 
 const GRAVITY = 2600;
 const BOUNCE = 0.42;

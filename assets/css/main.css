@@ -293,14 +293,25 @@ main,
   line-height: 0.9;
   color: transparent;
   -webkit-text-stroke: 1.5px rgba(236, 238, 244, 0.35);
-  background: linear-gradient(90deg, var(--ink) 50%, transparent 50%) 100% 0 / 200% 100% no-repeat;
+  /* Fills left to right as the page loads (--fill is set by main.js). */
+  background: linear-gradient(90deg, var(--ink) 50%, transparent 50%) calc(100% - var(--fill, 0) * 100%) 0 / 200% 100% no-repeat;
   -webkit-background-clip: text;
   background-clip: text;
-  animation: fill-word 1.2s var(--ease-io) 0.1s forwards;
 }
 
-@keyframes fill-word {
-  to { background-position: 0 0; }
+.preloader {
+  grid-template-rows: auto auto;
+  align-content: center;
+  gap: 18px;
+}
+
+.preloader__pct {
+  justify-self: center;
+  font-family: var(--mono);
+  font-size: 0.9rem;
+  letter-spacing: 0.12em;
+  color: var(--ink-3);
+  font-variant-numeric: tabular-nums;
 }
 
 .no-js .preloader,
