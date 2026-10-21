@@ -1,9 +1,9 @@
-import { initField } from "./field.js";
-import { initPortrait } from "./portrait.js";
-import { initCursor } from "./cursor.js";
-import { initGitHub } from "./github.js";
-import { initGrim } from "./mascot.js";
-import { initName } from "./name.js";
+import { initField } from "./field.js?v=20261021b";
+import { initPortrait } from "./portrait.js?v=20261021b";
+import { initCursor } from "./cursor.js?v=20261021b";
+import { initGitHub } from "./github.js?v=20261021b";
+import { initGrim } from "./mascot.js?v=20261021b";
+import { initName } from "./name.js?v=20261021b";
 
 window.__booted = true;
 
@@ -710,7 +710,7 @@ function initFooterWord() {
     async ([e]) => {
       if (!e.isIntersecting) return;
       io.disconnect();
-      const { initPit } = await import("./pit.js");
+      const { initPit } = await import("./pit.js?v=20261021b");
       initPit(root, { reduced });
     },
     { rootMargin: "600px 0px" }
@@ -736,8 +736,50 @@ const grim = initGrim({ gsap: hasGsap ? gsap : null, reduced, scrollTo: scrollTo
 const titleEl = $("[data-scramble]");
 if (titleEl) accessibleCopy(titleEl);
 
-async function intro() {
+// The loading screen stays until everything above the fold is ready: fonts,
+// the portrait, every eagerly loaded file, and a first frame of the particle
+// field. The GrimNej word fills with real progress, then the curtain lifts.
+// A safety timeout lifts it on very slow connections.
+async function waitForReady(firstVisit) {
+  const pre = $("[data-preloader]");
+  const pct = $("[data-preloader-pct]");
   const img = $("[data-portrait-img]");
+  const shown = { v: 0 };
+  const paint = () => {
+    pre?.style.setProperty("--fill", shown.v.toFixed(3));
+    if (pct) pct.textContent = Math.round(shown.v * 100);
+  };
+  let done = 0;
+  const steps = [
+    document.fonts ? document.fonts.ready : null,
+    img?.decode ? img.decode().catch(() => {}) : null,
+    document.readyState === "complete" ? null : new Promise((r) => window.addEventListener("load", r, { once: true })),
+    new Promise((r) => requestAnimationFrame(() => requestAnimationFrame(r))),
+  ].map((step) =>
+    Promise.resolve(step).then(() => {
+      done += 1;
+      const target = done / 4;
+      if (hasGsap && !reduced) gsap.to(shown, { v: target, duration: 0.6, ease: "power2.out", onUpdate: paint, overwrite: true });
+      else {
+        shown.v = target;
+        paint();
+      }
+    })
+  );
+  const started = performance.now();
+  await Promise.race([Promise.all(steps), wait(9000)]);
+  // Let the fill finish, and give first-time visitors a beat to see the word.
+  const minimum = reduced ? 0 : firstVisit ? 1500 : 600;
+  await wait(Math.max(0, minimum - (performance.now() - started)));
+  if (hasGsap && !reduced) await gsap.to(shown, { v: 1, duration: 0.45, ease: "power2.out", onUpdate: paint, overwrite: true });
+  else {
+    shown.v = 1;
+    paint();
+  }
+  if (!reduced) await wait(220);
+}
+
+async function intro() {
   let firstVisit = true;
   try {
     firstVisit = !sessionStorage.getItem("seen");
@@ -745,11 +787,7 @@ async function intro() {
   } catch {
     /* ignore */
   }
-  await Promise.race([
-    Promise.all([document.fonts ? document.fonts.ready : null, img?.decode ? img.decode().catch(() => {}) : null]),
-    wait(2400),
-  ]);
-  if (firstVisit && !reduced) await wait(700);
+  await waitForReady(firstVisit);
 
   portrait?.prepare();
   const nameFx = initName({ gsap: hasGsap ? gsap : null, fine, reduced });

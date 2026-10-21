@@ -39,12 +39,16 @@
     <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png" />
     <link rel="preload" href="assets/fonts/mona-sans-latin.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="assets/img/portrait.webp" as="image" type="image/webp" fetchpriority="high" />
-    <link rel="stylesheet" href="assets/css/main.css" />
+    <link rel="stylesheet" href="assets/css/main.css?v=20261021b" />
     <script>
       document.documentElement.classList.replace("no-js", "js");
       setTimeout(function () {
         if (!window.__booted) document.documentElement.classList.add("reveal-all");
       }, 3500);
+      setTimeout(function () {
+        var p = document.querySelector("[data-preloader]");
+        if (p && !p.classList.contains("is-done")) document.documentElement.classList.add("reveal-all");
+      }, 12000);
     </script>
 
     <script type="application/ld+json">
@@ -177,17 +181,19 @@
   </head>
 
   <body>
+    <!--email_off-->
     <a class="skip-link" href="#main">Skip to content</a>
 
     <div class="preloader" aria-hidden="true" data-preloader>
       <span class="preloader__word">GrimNej</span>
+      <span class="preloader__pct"><span data-preloader-pct>0</span>%</span>
     </div>
 
     <canvas class="field" aria-hidden="true" data-field></canvas>
     <div class="atmosphere" aria-hidden="true"></div>
     <div class="grain" aria-hidden="true"></div>
 
-    <div class="cursor" aria-hidden="true" data-cursor-root>
+    <div class="cursor is-hidden" aria-hidden="true" data-cursor-root>
       <div class="cursor__ring"></div>
       <div class="cursor__dot"></div>
       <div class="cursor__label" data-cursor-label></div>
@@ -859,10 +865,11 @@
 
     <div class="toast" role="status" aria-live="polite" data-toast></div>
 
-    <script src="assets/vendor/gsap.min.js" defer></script>
-    <script src="assets/vendor/ScrollTrigger.min.js" defer></script>
-    <script src="assets/vendor/SplitText.min.js" defer></script>
-    <script src="assets/vendor/lenis.min.js" defer></script>
-    <script type="module" src="assets/js/main.js"></script>
+    <!--/email_off-->
+    <script src="assets/vendor/gsap.min.js?v=20261021b" defer></script>
+    <script src="assets/vendor/ScrollTrigger.min.js?v=20261021b" defer></script>
+    <script src="assets/vendor/SplitText.min.js?v=20261021b" defer></script>
+    <script src="assets/vendor/lenis.min.js?v=20261021b" defer></script>
+    <script type="module" src="assets/js/main.js?v=20261021b"></script>
   </body>
 </html>
