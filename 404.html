@@ -7,7 +7,7 @@
     <meta name="robots" content="noindex" />
     <meta name="theme-color" content="#06070b" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-    <link rel="stylesheet" href="/assets/css/main.css" />
+    <link rel="stylesheet" href="/assets/css/main.css?v=20261021b" />
     <style>
       .lost {
         position: relative;
@@ -26,19 +26,17 @@
         max-width: 640px;
       }
 
-      .lost__code {
+      .lost .lost__code {
         font-size: clamp(7rem, 30vw, 16rem);
         font-weight: 860;
         font-stretch: 120%;
         letter-spacing: -0.06em;
         line-height: 0.85;
-        color: transparent;
-        -webkit-text-stroke: 1.5px rgba(206, 214, 255, 0.4);
+        color: rgba(206, 214, 255, 0.14);
       }
 
-      .lost__code span {
+      .lost .lost__code span {
         color: var(--ember);
-        -webkit-text-stroke: 0;
       }
 
       .lost h1 {
@@ -57,7 +55,8 @@
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
-        gap: 12px;
+        align-items: center;
+        gap: 28px;
         margin-top: 8px;
       }
     </style>
@@ -71,8 +70,8 @@
         <h1>Nothing lives at this address.</h1>
         <p>The page may have moved during the redesign. Everything is on the home page, and I'm one email away.</p>
         <div class="lost__actions">
-          <a class="btn btn--ember" href="/">Back to the portfolio</a>
-          <a class="btn btn--ghost" href="mailto:grim98413@gmail.com">grim98413@gmail.com</a>
+          <a class="orb orb--sm" href="/"><span class="orb__fill" aria-hidden="true"></span><span class="orb__label">Home</span></a>
+          <a class="arrow-link" href="mailto:grim98413@gmail.com">grim98413@gmail.com</a>
         </div>
       </div>
     </main>
