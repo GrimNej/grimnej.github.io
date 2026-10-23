@@ -1,9 +1,12 @@
-import { initField } from "./field.js?v=20261021c";
-import { initPortrait } from "./portrait.js?v=20261021c";
-import { initCursor } from "./cursor.js?v=20261021c";
-import { initGitHub } from "./github.js?v=20261021c";
-import { initGrim } from "./mascot.js?v=20261021c";
-import { initName } from "./name.js?v=20261021c";
+import { initField } from "./field.js?v=20261024a";
+import { initPortrait } from "./portrait.js?v=20261024a";
+import { initCursor } from "./cursor.js?v=20261024a";
+import { initGitHub } from "./github.js?v=20261024a";
+import { initGrim } from "./mascot.js?v=20261024a";
+import { initName } from "./name.js?v=20261024a";
+import { initAbout } from "./about.js?v=20261024a";
+import { initReel } from "./reel.js?v=20261024a";
+import { initProcess } from "./process.js?v=20261024a";
 
 window.__booted = true;
 
@@ -406,6 +409,33 @@ const marquee = (() => {
   return items[0];
 })();
 
+/* ---------- Velocity split on display type ---------- */
+
+// Fast scrolling splits the big type into ember and ice fringes (see .echo in
+// main.css). The value is set on each display element rather than the root, so
+// a scroll only restyles the headings, not the whole page.
+(function velocitySplit() {
+  if (reduced || !hasGsap || !lenis) return;
+  let echoes = [];
+  const collect = () => (echoes = $$(".echo"));
+  collect();
+  document.addEventListener("echo:collect", collect);
+  let rgb = 0;
+  let last = "";
+  gsap.ticker.add(() => {
+    rgb += (clamp(lenis.velocity * 0.26, -5, 5) - rgb) * 0.16;
+    const on = Math.abs(rgb) > 0.06;
+    const key = on ? rgb.toFixed(2) : "0";
+    if (key === last) return;
+    last = key;
+    const a = on ? Math.min(Math.abs(rgb) / 5, 1) * 0.6 : 0;
+    echoes.forEach((el) => {
+      el.style.setProperty("--rgb", key);
+      el.style.setProperty("--rgb-a", a.toFixed(3));
+    });
+  });
+})();
+
 /* ---------- "What I build" rows with a cursor-following preview ---------- */
 
 (function rows() {
@@ -535,7 +565,7 @@ $$("[data-rag-dots]").forEach((g) => {
 /* ---------- Reveals ---------- */
 
 function initReveals() {
-  const items = $$("[data-reveal], [data-clip], .project__media");
+  const items = $$("[data-reveal], [data-clip], .project__media, .section-head");
   if (reduced || !("IntersectionObserver" in window)) {
     items.forEach((el) => el.classList.add("is-in"));
     return;
@@ -574,8 +604,9 @@ function initDecode() {
 }
 initDecode();
 
+// The about statement is handled by about.js, which lights it inside its scene.
 function initWordLight() {
-  $$("[data-words]").forEach((p) => {
+  $$("[data-words]").filter((p) => !p.closest("[data-about]")).forEach((p) => {
     const words = p.textContent.trim().split(/\s+/);
     p.textContent = "";
     words.forEach((w, i) => {
@@ -603,43 +634,31 @@ function initWordLight() {
   });
 }
 
+// Headings rise into place trailing stacked ghost copies of themselves (an
+// echo), which collapse into the type as it lands.
 function initHeadings() {
+  $$("[data-split]").forEach((el) => el.classList.add("echo"));
+  document.dispatchEvent(new Event("echo:collect"));
   if (!hasGsap || !SplitText || reduced) return;
   $$("[data-split]").forEach((el) => {
     const chars = el.classList.contains("contact__title");
-    const split = SplitText.create(el, chars ? { type: "chars", mask: "chars" } : { type: "lines", mask: "lines" });
-    gsap.from(chars ? split.chars : split.lines, {
-      yPercent: 115,
-      rotate: chars ? 0 : 3,
-      duration: chars ? 1.3 : 1.2,
-      ease: "expo.out",
-      stagger: chars ? 0.05 : 0.1,
-      scrollTrigger: { trigger: el, start: "top 88%", once: true },
-      onComplete: () => split.revert(),
-    });
-  });
-}
-
-function initSteps() {
-  const wrap = $("[data-steps]");
-  if (!wrap) return;
-  const fill = $("[data-steps-fill]", wrap).parentElement;
-  const steps = $$(".step", wrap);
-  if (reduced || !hasGsap) {
-    fill.style.setProperty("--fill", 1);
-    steps.forEach((s) => s.classList.add("is-on"));
-    return;
-  }
-  ScrollTrigger.create({
-    trigger: wrap,
-    start: "top 75%",
-    end: "bottom 55%",
-    scrub: 0.6,
-    onUpdate: (self) => {
-      const p = self.progress;
-      fill.style.setProperty("--fill", p.toFixed(3));
-      steps.forEach((s, i) => s.classList.toggle("is-on", p >= (i / (steps.length - 1)) * 0.98 - 0.001));
-    },
+    const split = SplitText.create(el, { type: chars ? "chars" : "lines" });
+    const parts = chars ? split.chars : split.lines;
+    gsap.fromTo(
+      parts,
+      { yPercent: chars ? 55 : 70, opacity: 0, "--ey": chars ? 0.14 : 0.15, "--ea": 1 },
+      {
+        yPercent: 0,
+        opacity: 1,
+        "--ey": 0,
+        "--ea": 0,
+        duration: chars ? 1.5 : 1.4,
+        ease: "power3.out",
+        stagger: chars ? 0.05 : 0.12,
+        scrollTrigger: { trigger: el, start: "top 88%", once: true },
+        onComplete: () => split.revert(),
+      }
+    );
   });
 }
 
@@ -710,7 +729,7 @@ function initFooterWord() {
     async ([e]) => {
       if (!e.isIntersecting) return;
       io.disconnect();
-      const { initPit } = await import("./pit.js?v=20261021c");
+      const { initPit } = await import("./pit.js?v=20261024a");
       initPit(root, { reduced });
     },
     { rootMargin: "600px 0px" }
@@ -736,18 +755,107 @@ const grim = initGrim({ gsap: hasGsap ? gsap : null, reduced, scrollTo: scrollTo
 const titleEl = $("[data-scramble]");
 if (titleEl) accessibleCopy(titleEl);
 
+// A wavy ring around the loading word that draws itself with the real load
+// progress, led by an ember comet. When loading completes, the ring fades and
+// the comet drops into the full stop after the word.
+function loaderRing() {
+  const svg = $("[data-preloader-ring]");
+  const word = $(".preloader__word");
+  const path = $("[data-preloader-path]");
+  const comet = $("[data-preloader-comet]");
+  const trails = $$("[data-preloader-trail]");
+  const dot = $("[data-preloader-dot]");
+  if (!svg || !word || !path || reduced) return null;
+  let len = 0;
+  let p = 0;
+  function build() {
+    const r = word.getBoundingClientRect();
+    const R = Math.min(Math.max(r.width * 0.62, r.height * 1.4), Math.min(window.innerWidth, window.innerHeight) * 0.44);
+    const size = Math.ceil(R * 2.3);
+    svg.setAttribute("viewBox", `${-size / 2} ${-size / 2} ${size} ${size}`);
+    svg.style.width = svg.style.height = `${size}px`;
+    // Starts at three o'clock and runs counter-clockwise, ending beside the word.
+    const pts = [];
+    for (let i = 0; i <= 360; i++) {
+      const t = -(i / 360) * Math.PI * 2;
+      const rr = R * (1 + 0.05 * Math.sin(9 * t + 0.4) + 0.018 * Math.sin(4 * t));
+      pts.push(`${(Math.cos(t) * rr).toFixed(2)} ${(Math.sin(t) * rr).toFixed(2)}`);
+    }
+    path.setAttribute("d", `M${pts.join("L")}`);
+    len = path.getTotalLength();
+    path.style.strokeDasharray = `${len}`;
+    set(p);
+  }
+  function at(q, el) {
+    const pt = path.getPointAtLength(Math.max(0, q) * len);
+    el.setAttribute("cx", pt.x.toFixed(2));
+    el.setAttribute("cy", pt.y.toFixed(2));
+  }
+  function set(v) {
+    p = v;
+    path.style.strokeDashoffset = `${len * (1 - v)}`;
+    at(v, comet);
+    trails.forEach((t, i) => at(v - 0.012 * (i + 1), t));
+    svg.style.opacity = v > 0.002 ? "1" : "0";
+  }
+  build();
+  // The word changes size when Mona Sans arrives; the ring follows it.
+  const ro = new ResizeObserver(build);
+  ro.observe(word);
+  // Landing: the ring fades, the comet hops into the full stop.
+  async function land() {
+    ro.disconnect();
+    if (!hasGsap) return;
+    const sr = svg.getBoundingClientRect();
+    const dr = dot.getBoundingClientRect();
+    const scale = sr.width / Number(svg.getAttribute("viewBox").split(" ")[2]);
+    const x = (dr.left + dr.width / 2 - (sr.left + sr.width / 2)) / scale;
+    const y = (dr.top + dr.height / 2 - (sr.top + sr.height / 2)) / scale;
+    const tl = gsap.timeline();
+    tl.to(path, { opacity: 0, duration: 0.35, ease: "power2.out" }, 0)
+      .to(trails, { opacity: 0, duration: 0.2 }, 0)
+      .to(comet, { attr: { cx: x, cy: y }, duration: 0.5, ease: "power3.in" }, 0.05)
+      .to(comet, { opacity: 0, duration: 0.12 }, 0.5)
+      .to(dot, { opacity: 1, scale: 1, duration: 0.5, ease: "back.out(3)" }, 0.5);
+    await tl;
+  }
+  return { set, land };
+}
+
+// The site opens out of the ember full stop: a hole in the loading screen
+// grows from the dot, edged with a thin ember ring, until the page is clear.
+function openIris() {
+  const pre = $("[data-preloader]");
+  const dot = $("[data-preloader-dot]");
+  if (!pre) return;
+  if (!hasGsap || reduced || !dot) {
+    pre.classList.add("is-done");
+    return;
+  }
+  const r = dot.getBoundingClientRect();
+  const x = r.left + r.width / 2;
+  const y = r.top + r.height / 2;
+  const far = Math.hypot(Math.max(x, window.innerWidth - x), Math.max(y, window.innerHeight - y)) + 40;
+  pre.style.setProperty("--hx", `${x}px`);
+  pre.style.setProperty("--hy", `${y}px`);
+  pre.classList.add("is-iris");
+  gsap.fromTo(pre, { "--hole": 0 }, { "--hole": far, duration: 1.25, ease: "expo.inOut", onComplete: () => pre.classList.add("is-done") });
+}
+
 // The loading screen stays until everything above the fold is ready: fonts,
 // the portrait, every eagerly loaded file, and a first frame of the particle
-// field. The GrimNej word fills with real progress, then the curtain lifts.
-// A safety timeout lifts it on very slow connections.
+// field. The GrimNej word fills and the ring draws with real progress, then
+// the curtain lifts. A safety timeout lifts it on very slow connections.
 async function waitForReady(firstVisit) {
   const pre = $("[data-preloader]");
   const pct = $("[data-preloader-pct]");
   const img = $("[data-portrait-img]");
+  const ring = loaderRing();
   const shown = { v: 0 };
   const paint = () => {
     pre?.style.setProperty("--fill", shown.v.toFixed(3));
     if (pct) pct.textContent = Math.round(shown.v * 100);
+    ring?.set(shown.v);
   };
   let done = 0;
   const steps = [
@@ -776,7 +884,8 @@ async function waitForReady(firstVisit) {
     shown.v = 1;
     paint();
   }
-  if (!reduced) await wait(220);
+  if (ring) await ring.land();
+  if (!reduced) await wait(260);
 }
 
 async function intro() {
@@ -792,14 +901,18 @@ async function intro() {
   portrait?.prepare();
   const nameFx = initName({ gsap: hasGsap ? gsap : null, fine, reduced });
   const nameChars = nameFx.chars;
+  // Pinned scenes first, top to bottom, so every trigger below them is measured
+  // with their scroll length already in place.
+  initAbout({ gsap: hasGsap ? gsap : null, ScrollTrigger, reduced });
+  const reelOn = hasGsap && initReel({ gsap, ScrollTrigger, lenis, reduced });
+  initProcess({ gsap: hasGsap ? gsap : null, ScrollTrigger, lenis, reduced });
   initWordLight();
   initHeadings();
-  initSteps();
-  initStackCards();
+  if (!reelOn) initStackCards();
   initFooterWord();
   initHeroScroll();
 
-  $("[data-preloader]")?.classList.add("is-done");
+  openIris();
   const name = $(".hero__name");
 
   if (!hasGsap || reduced) {
@@ -817,8 +930,9 @@ async function intro() {
       nameFx.reveal();
     },
   });
-  tl.from(nameChars, { yPercent: 120, rotate: 8, duration: 1.4, stagger: 0.04 }, 0.35)
-    .from("[data-hero-in]", { y: 30, opacity: 0, duration: 1.1, ease: "power3.out", stagger: 0.1, clearProps: "transform,opacity" }, 0.7)
+  // The page arrives out of focus and sharpens as it settles.
+  tl.from(nameChars, { yPercent: 120, rotate: 8, filter: "blur(10px)", duration: 1.4, stagger: 0.04, clearProps: "filter" }, 0.35)
+    .from("[data-hero-in]", { y: 30, opacity: 0, filter: "blur(8px)", duration: 1.1, ease: "power3.out", stagger: 0.1, clearProps: "transform,opacity,filter" }, 0.7)
     .add(() => scramble(titleEl, 1.1), 0.75)
     .add(() => portrait?.playIntro(), 0.4)
     .from(".hero__marquee", { xPercent: 30, opacity: 0, duration: 1.8 }, 0.6)
