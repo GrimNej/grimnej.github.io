@@ -39,7 +39,7 @@
     <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png" />
     <link rel="preload" href="assets/fonts/mona-sans-latin.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="assets/img/portrait.webp" as="image" type="image/webp" fetchpriority="high" />
-    <link rel="stylesheet" href="assets/css/main.css?v=20261021c" />
+    <link rel="stylesheet" href="assets/css/main.css?v=20261024a" />
     <script>
       document.documentElement.classList.replace("no-js", "js");
       setTimeout(function () {
@@ -74,7 +74,7 @@
             "isPartOf": {
               "@id": "https://grimnej.com/#website"
             },
-            "dateModified": "2026-10-21",
+            "dateModified": "2026-10-24",
             "mainEntity": {
               "@id": "https://grimnej.com/#person"
             }
@@ -185,7 +185,15 @@
     <a class="skip-link" href="#main">Skip to content</a>
 
     <div class="preloader" aria-hidden="true" data-preloader>
-      <span class="preloader__word">GrimNej</span>
+      <div class="preloader__mark" data-preloader-mark>
+        <svg class="preloader__ring" data-preloader-ring>
+          <path class="preloader__path" data-preloader-path d="" />
+          <circle class="preloader__trail" r="1.6" data-preloader-trail />
+          <circle class="preloader__trail" r="2.4" data-preloader-trail />
+          <circle class="preloader__comet" r="4.2" data-preloader-comet />
+        </svg>
+        <span class="preloader__word">GrimNej<i class="preloader__dot" data-preloader-dot></i></span>
+      </div>
       <span class="preloader__pct"><span data-preloader-pct>0</span>%</span>
     </div>
 
@@ -313,37 +321,53 @@
       </section>
 
       <!-- About -->
-      <section class="section about" id="about" data-scene="terrain" aria-labelledby="about-label">
-        <div class="wrap">
-          <p class="label" id="about-label">About</p>
-          <p class="statement" data-words>
-            I'm Ginej, GrimNej online. My screen time is release notes, repos, and papers, so when a new model
-            drops, I'm already building on it while the timeline is still arguing about it.
-          </p>
-
-          <div class="about__grid">
-            <figure class="about__photo" data-tilt data-clip>
-              <div class="about__photo-inner">
-                <img src="assets/img/about.webp" width="1000" height="1000" loading="lazy" decoding="async" alt="Black-and-white photo of Ginej Neupane in glasses, looking up and to the left" />
-              </div>
+      <!-- On large screens this becomes a pinned scene: the photo starts as a small
+           card, "About" and "me" split apart, and the card opens to fill the screen. -->
+      <section class="section about" id="about" data-scene="terrain" aria-labelledby="about-label" data-about>
+        <div class="about__stage wrap" data-about-stage>
+          <div class="about__card" data-about-card>
+            <figure class="about__photo" data-about-photo>
+              <img src="assets/img/about.webp" width="1000" height="1000" loading="lazy" decoding="async" alt="Black-and-white photo of Ginej Neupane in glasses, looking up and to the left" />
               <figcaption>Kathmandu, Nepal</figcaption>
             </figure>
+            <span class="about__sweep" aria-hidden="true" data-about-sweep></span>
 
-            <div class="about__copy">
-              <p data-reveal>
-                Bring me a half-baked idea and you'll get a straight answer on whether it works, then a working
-                prototype. No yapping. Agents that actually finish the task, automations that delete busywork,
-                copilots that know your whole stack, and apps people come back to.
+            <div class="about__inside" data-about-inside>
+              <p class="label" id="about-label">About</p>
+              <p class="statement" data-words>
+                I'm Ginej, GrimNej online. My screen time is release notes, repos, and papers, so when a new model
+                drops, I'm already building on it while the timeline is still arguing about it.
               </p>
-              <p data-reveal>
-                I don't do stack loyalty. Python, TypeScript, Rust, whichever model is cooking this month. If it
-                ships, it's the right tool, and if something better drops on Tuesday, I'm already in the docs.
-              </p>
-              <p data-reveal class="about__sign">
-                Speaks English, Nepali, and Hindi.
-              </p>
+
+              <div class="about__copy">
+                <p data-reveal>
+                  Bring me a half-baked idea and you'll get a straight answer on whether it works, then a working
+                  prototype. No yapping. Agents that actually finish the task, automations that delete busywork,
+                  copilots that know your whole stack, and apps people come back to.
+                </p>
+                <p data-reveal>
+                  I don't do stack loyalty. Python, TypeScript, Rust, whichever model is cooking this month. If it
+                  ships, it's the right tool, and if something better drops on Tuesday, I'm already in the docs.
+                </p>
+                <p data-reveal class="about__sign">
+                  Speaks English, Nepali, and Hindi.
+                </p>
+              </div>
             </div>
           </div>
+
+          <!-- Frames the card like the hero portrait, and opens with it. -->
+          <div class="about__hud" aria-hidden="true" data-about-hud>
+            <span class="hud__c hud__c--tl"></span><span class="hud__c hud__c--tr"></span>
+            <span class="hud__c hud__c--bl"></span><span class="hud__c hud__c--br"></span>
+            <span class="about__tag about__tag--tl">File 02 · About</span>
+            <span class="about__tag about__tag--br"><i></i>Kathmandu · 27.7° N 85.3° E</span>
+          </div>
+
+          <p class="about__title" aria-hidden="true">
+            <span class="about__word" data-about-word>About</span>
+            <span class="about__word" data-about-word>me</span>
+          </p>
         </div>
       </section>
 
@@ -434,7 +458,47 @@
               banner or its live app.
             </p>
           </header>
+        </div>
 
+        <!-- The reel: on large screens with WebGL, the project cards below become one
+             pinned scene (ribbon, then ring, then reel). assets/js/reel.js builds it from
+             the articles, which stay as the fallback everywhere else. -->
+        <div class="reel" data-reel hidden>
+          <div class="reel__pin" data-reel-pin>
+            <div class="reel__glow" aria-hidden="true"></div>
+            <div class="reel__ghost" aria-hidden="true">
+              <p class="reel__ghost-row" data-reel-ghost="1">Selected work <i>&#10022;</i> Shipped in 2026 <i>&#10022;</i> Selected work <i>&#10022;</i> Shipped in 2026 <i>&#10022;</i></p>
+              <p class="reel__ghost-row" data-reel-ghost="-1">Agents <i>&#10022;</i> Products <i>&#10022;</i> Hackathons <i>&#10022;</i> Agents <i>&#10022;</i> Products <i>&#10022;</i> Hackathons <i>&#10022;</i></p>
+            </div>
+            <canvas class="reel__canvas" aria-hidden="true" data-reel-canvas></canvas>
+            <svg class="reel__orbit" viewBox="0 0 300 300" aria-hidden="true">
+              <defs><path id="reel-orbit-path" d="M150 150 m-128 0 a128 128 0 1 1 256 0 a128 128 0 1 1 -256 0" /></defs>
+              <circle class="reel__orbit-line" cx="150" cy="150" r="110" />
+              <text><textPath href="#reel-orbit-path">Six projects · built for hackathons and AI challenges · shipped in 2026 · </textPath></text>
+            </svg>
+            <p class="reel__center echo" aria-hidden="true"><span>Shipped</span> <span class="is-ember">'26</span></p>
+            <div class="reel__caption echo" aria-hidden="true" data-reel-caption>
+              <p class="reel__cap-count" data-reel-cap-count></p>
+              <p class="reel__cap-title" data-reel-cap-title></p>
+              <p class="reel__cap-tag" data-reel-cap-tag></p>
+            </div>
+            <a class="reel__hit" href="#work" target="_blank" rel="noopener" data-cursor="Open" data-cursor-mode="media" data-reel-hit></a>
+
+            <!-- Lined up with the page grid, like the section titles. -->
+            <div class="reel__frame">
+              <p class="reel__count" aria-hidden="true"><span class="reel__count-label">Selected work</span> <span data-reel-count>01 / 06</span></p>
+              <div class="reel__detail echo" data-reel-detail></div>
+              <div class="reel__side">
+                <nav class="reel__index" aria-label="Selected projects"><ol data-reel-index></ol></nav>
+                <div class="reel__meta echo" data-reel-meta></div>
+              </div>
+              <ol class="reel__ticks" aria-hidden="true" data-reel-ticks></ol>
+              <p class="reel__hint" aria-hidden="true"><span data-reel-hint>Drag the ribbon</span></p>
+            </div>
+          </div>
+        </div>
+
+        <div class="wrap">
           <div class="projects" data-projects>
             <article class="project" style="--accent: #ec6f55" data-project>
               <div class="project__media">
@@ -608,7 +672,7 @@
             <ul class="more__grid">
               <li class="mini" data-reveal>
                 <a href="https://github.com/GrimNej/Open-Proto" target="_blank" rel="noopener" data-cursor="View source" data-cursor-mode="media">
-                  <span class="mini__img"><img src="assets/work/open-proto.webp" width="1024" height="434" loading="lazy" alt="Open Proto banner: architectural retrieval and synthesis engine for AI coding agents." /></span>
+                  <span class="mini__img" data-shot><img src="assets/work/open-proto.webp" width="1024" height="434" loading="lazy" alt="Open Proto banner: architectural retrieval and synthesis engine for AI coding agents." /></span>
                   <span class="mini__title">Open Proto <svg class="icon" aria-hidden="true"><use href="assets/img/icons.svg#i-arrow-ur" /></svg></span>
                   <span class="mini__desc">Stops AI coding agents from inventing architecture. It finds proven, permissively licensed repos that already solved your problem.</span>
                   <span class="mini__lang">Python / Rust / MCP</span>
@@ -616,7 +680,7 @@
               </li>
               <li class="mini" data-reveal>
                 <a href="https://github.com/GrimNej/Editing-Buddy" target="_blank" rel="noopener" data-cursor="View source" data-cursor-mode="media">
-                  <span class="mini__img"><img src="assets/work/editing-buddy.webp" width="1024" height="434" loading="lazy" alt="Editing Buddy banner with its record and screenshot window." /></span>
+                  <span class="mini__img" data-shot><img src="assets/work/editing-buddy.webp" width="1024" height="434" loading="lazy" alt="Editing Buddy banner with its record and screenshot window." /></span>
                   <span class="mini__title">Editing Buddy <svg class="icon" aria-hidden="true"><use href="assets/img/icons.svg#i-arrow-ur" /></svg></span>
                   <span class="mini__desc">Hit record, hit stop, and the clip is already sitting in your Premiere Pro bin.</span>
                   <span class="mini__lang">Python / FFmpeg / Premiere Pro</span>
@@ -624,7 +688,7 @@
               </li>
               <li class="mini" data-reveal>
                 <a href="https://github.com/GrimNej/Read-Anchor" target="_blank" rel="noopener" data-cursor="View source" data-cursor-mode="media">
-                  <span class="mini__img"><img src="assets/work/read-anchor.webp" width="1024" height="338" loading="lazy" alt="Read Anchor banner: a magnifier over highlighted text opening a search popup." /></span>
+                  <span class="mini__img" data-shot><img src="assets/work/read-anchor.webp" width="1024" height="338" loading="lazy" alt="Read Anchor banner: a magnifier over highlighted text opening a search popup." /></span>
                   <span class="mini__title">Read Anchor <svg class="icon" aria-hidden="true"><use href="assets/img/icons.svg#i-arrow-ur" /></svg></span>
                   <span class="mini__desc">Highlight any word on any page and look it up without ever leaving the tab.</span>
                   <span class="mini__lang">JavaScript / Chrome extension</span>
@@ -709,33 +773,82 @@
       </section>
 
       <!-- Process -->
-      <section class="section process" id="process" data-scene="terrain" aria-labelledby="process-title">
+      <!-- On large screens the steps become a pinned horizontal track (assets/js/process.js). -->
+      <section class="section process" id="process" data-scene="terrain" aria-labelledby="process-title" data-process>
         <div class="wrap">
           <header class="section-head">
             <p class="label">How it goes</p>
             <h2 id="process-title" class="h2" data-split>Idea in. Working thing out.</h2>
           </header>
-          <ol class="steps" data-steps>
-            <li class="step">
-              <span class="step__node" aria-hidden="true"></span>
-              <p class="step__no">01</p>
-              <h3 class="step__title">Verdict first</h3>
-              <p>You pitch it, and I tell you straight whether it's real. No glazing, before anyone spends money finding out.</p>
-            </li>
-            <li class="step">
-              <span class="step__node" aria-hidden="true"></span>
-              <p class="step__no">02</p>
-              <h3 class="step__title">Prototype fast</h3>
-              <p>Working software beats a slide deck. You get something to click early, not a promise.</p>
-            </li>
-            <li class="step">
-              <span class="step__node" aria-hidden="true"></span>
-              <p class="step__no">03</p>
-              <h3 class="step__title">Keep it moving</h3>
-              <p>AI changes weekly. I build so the next model slots in without a rewrite.</p>
-            </li>
-            <span class="steps__rail" aria-hidden="true"><span data-steps-fill></span></span>
-          </ol>
+        </div>
+
+        <div class="process__stage" data-process-stage>
+          <div class="process__ghost" aria-hidden="true">
+            <p class="process__ghost-row" data-process-row>Verdict <i>&#10022;</i> Prototype <i>&#10022;</i> Keep moving <i>&#10022;</i> Verdict <i>&#10022;</i> Prototype <i>&#10022;</i> Keep moving <i>&#10022;</i></p>
+            <p class="process__ghost-row" data-process-row>Idea in <i>&#10022;</i> Working thing out <i>&#10022;</i> Idea in <i>&#10022;</i> Working thing out <i>&#10022;</i></p>
+          </div>
+
+          <div class="wrap process__wrap">
+            <ol class="steps" data-steps>
+              <li class="step">
+                <span class="step__node" aria-hidden="true"></span>
+                <div class="step__text">
+                  <p class="step__no">01 <span>/ 03</span></p>
+                  <h3 class="step__title echo">Verdict first</h3>
+                  <p>You pitch it, and I tell you straight whether it's real. No glazing, before anyone spends money finding out.</p>
+                </div>
+                <svg class="step__art art art--verdict" viewBox="0 0 320 200" aria-hidden="true">
+                  <path class="art__ticks" d="M52.0 160.0 L34.0 160.0 M51.8 131.0 L40.2 127.9 M63.0 104.0 L52.6 98.0 M83.6 83.6 L70.9 70.9 M104.0 63.0 L98.0 52.6 M131.0 51.8 L127.9 40.2 M160.0 52.0 L160.0 34.0 M189.0 51.8 L192.1 40.2 M216.0 63.0 L222.0 52.6 M236.4 83.6 L249.1 70.9 M257.0 104.0 L267.4 98.0 M268.2 131.0 L279.8 127.9 M268.0 160.0 L286.0 160.0" />
+                  <path class="art__track" d="M58 160 A102 102 0 0 1 262 160" />
+                  <path class="art__arc" d="M58 160 A102 102 0 0 1 262 160" pathLength="100" />
+                  <g class="art__needle"><path d="M160 160 L160 76" /><circle cx="160" cy="160" r="8" /></g>
+                  <text class="art__label" x="40" y="186">nah</text>
+                  <text class="art__label" x="280" y="186" text-anchor="end">real</text>
+                  <g class="art__stamp"><rect x="200" y="14" width="110" height="34" rx="3" /><text x="255" y="36" text-anchor="middle">ship it</text></g>
+                </svg>
+              </li>
+              <li class="step">
+                <span class="step__node" aria-hidden="true"></span>
+                <div class="step__text">
+                  <p class="step__no">02 <span>/ 03</span></p>
+                  <h3 class="step__title echo">Prototype fast</h3>
+                  <p>Working software beats a slide deck. You get something to click early, not a promise.</p>
+                </div>
+                <svg class="step__art art art--proto" viewBox="0 0 320 200" aria-hidden="true">
+                  <rect class="art__window" x="30" y="16" width="260" height="168" rx="6" />
+                  <path class="art__bar" d="M30 38 H290" />
+                  <g class="art__dots"><circle cx="44" cy="27" r="3" /><circle cx="54" cy="27" r="3" /><circle cx="64" cy="27" r="3" /></g>
+                  <text class="art__url" x="176" y="31" text-anchor="middle">v0.1 · live</text>
+                  <rect class="art__block b1" x="50" y="56" width="110" height="14" rx="2" />
+                  <rect class="art__block b2" x="50" y="80" width="150" height="8" rx="2" />
+                  <rect class="art__block b3" x="50" y="94" width="126" height="8" rx="2" />
+                  <rect class="art__block b4" x="198" y="56" width="74" height="84" rx="3" />
+                  <rect class="art__block art__btn b5" x="50" y="120" width="72" height="24" rx="12" />
+                  <circle class="art__click" cx="86" cy="132" r="5" />
+                  <path class="art__cursor" d="M0 0 L0 17 L5 12.5 L8.5 20 L11.5 18.7 L8 11.5 L14 11.5 Z" />
+                </svg>
+              </li>
+              <li class="step">
+                <span class="step__node" aria-hidden="true"></span>
+                <div class="step__text">
+                  <p class="step__no">03 <span>/ 03</span></p>
+                  <h3 class="step__title echo">Keep it moving</h3>
+                  <p>AI changes weekly. I build so the next model slots in without a rewrite.</p>
+                </div>
+                <svg class="step__art art art--swap" viewBox="0 0 320 200" aria-hidden="true">
+                  <rect class="art__app" x="20" y="56" width="122" height="88" rx="6" />
+                  <text class="art__label" x="81" y="97" text-anchor="middle">your app</text>
+                  <text class="art__sub" x="81" y="115" text-anchor="middle">unchanged</text>
+                  <path class="art__wire" d="M142 100 H194" />
+                  <rect class="art__socket" x="194" y="66" width="108" height="68" rx="6" />
+                  <g class="art__chip art__chip--out"><rect x="204" y="78" width="88" height="44" rx="4" /><text x="248" y="104" text-anchor="middle">model n</text></g>
+                  <g class="art__chip art__chip--in"><rect x="204" y="78" width="88" height="44" rx="4" /><text x="248" y="104" text-anchor="middle">model n+1</text></g>
+                  <text class="art__sub" x="248" y="160" text-anchor="middle">dropped tuesday</text>
+                </svg>
+              </li>
+              <span class="steps__rail" aria-hidden="true"><span data-steps-fill></span></span>
+            </ol>
+          </div>
         </div>
       </section>
 
@@ -866,10 +979,10 @@
     <div class="toast" role="status" aria-live="polite" data-toast></div>
 
     <!--/email_off-->
-    <script src="assets/vendor/gsap.min.js?v=20261021c" defer></script>
-    <script src="assets/vendor/ScrollTrigger.min.js?v=20261021c" defer></script>
-    <script src="assets/vendor/SplitText.min.js?v=20261021c" defer></script>
-    <script src="assets/vendor/lenis.min.js?v=20261021c" defer></script>
-    <script type="module" src="assets/js/main.js?v=20261021c"></script>
+    <script src="assets/vendor/gsap.min.js?v=20261024a" defer></script>
+    <script src="assets/vendor/ScrollTrigger.min.js?v=20261024a" defer></script>
+    <script src="assets/vendor/SplitText.min.js?v=20261024a" defer></script>
+    <script src="assets/vendor/lenis.min.js?v=20261024a" defer></script>
+    <script type="module" src="assets/js/main.js?v=20261024a"></script>
   </body>
 </html>

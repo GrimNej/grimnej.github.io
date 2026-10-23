@@ -303,7 +303,7 @@ export function initGrim({ gsap = null, reduced = false, scrollTo = null, copy =
 
   const triggers = [
     ["#build", "build"],
-    ["#work .projects", "work"],
+    ["#work .section-head", "work"],
     ["[data-archive]", "archive"],
     ["#stack .pit", "stack"],
     ["#contact .contact__mail", "contact"],

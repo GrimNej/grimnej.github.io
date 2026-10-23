@@ -40,6 +40,33 @@
   initial-value: 0;
 }
 
+/* Echo trails: --ex/--ey set the trail direction (in em per copy) and --ea its
+   strength. Registered so keyframes can interpolate them. */
+@property --ex {
+  syntax: "<number>";
+  inherits: true;
+  initial-value: 0;
+}
+
+@property --ey {
+  syntax: "<number>";
+  inherits: true;
+  initial-value: 0;
+}
+
+@property --ea {
+  syntax: "<number>";
+  inherits: true;
+  initial-value: 0;
+}
+
+/* The reel's light, so it can fade between project colours. */
+@property --glow {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #8b9cff;
+}
+
 :root {
   color-scheme: dark;
 
@@ -272,25 +299,39 @@ main,
   z-index: 2;
 }
 
-/* ---------- Preloader: a curtain that lifts ---------- */
+/* ---------- Preloader: a ring draws itself, then the curtain lifts ---------- */
 
 .preloader {
   position: fixed;
   inset: 0;
   z-index: 150;
   display: grid;
-  place-items: center;
+  grid-template-rows: auto auto;
+  align-content: center;
+  justify-items: center;
+  gap: 18px;
   background: var(--bg);
   transition: transform 1.1s var(--ease-io), visibility 1.1s;
 }
 
+.preloader__mark {
+  position: relative;
+  display: grid;
+  place-items: center;
+}
+
 .preloader__word {
+  position: relative;
+  z-index: 1;
   display: block;
-  font-size: clamp(3.5rem, 13vw, 12rem);
+  font-size: clamp(2.6rem, 7.6vw, 6.8rem);
   font-weight: 860;
   font-stretch: 125%;
   letter-spacing: -0.05em;
   line-height: 0.9;
+  /* Room for the descender of the j, so the fill reaches it. */
+  padding-bottom: 0.16em;
+  margin-bottom: -0.16em;
   color: transparent;
   -webkit-text-stroke: 1.5px rgba(236, 238, 244, 0.35);
   /* Fills left to right as the page loads (--fill is set by main.js). */
@@ -299,14 +340,46 @@ main,
   background-clip: text;
 }
 
-.preloader {
-  grid-template-rows: auto auto;
-  align-content: center;
-  gap: 18px;
+/* The full stop the comet lands in. */
+.preloader__dot {
+  display: inline-block;
+  width: 0.17em;
+  height: 0.17em;
+  margin-left: 0.04em;
+  background: var(--ember);
+  box-shadow: 0 0 18px rgba(255, 107, 61, 0.7);
+  opacity: 0;
+  transform: scale(0);
+}
+
+.preloader__ring {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  max-width: none;
+  overflow: visible;
+  translate: -50% -50%;
+  pointer-events: none;
+}
+
+.preloader__path {
+  fill: none;
+  stroke: rgba(236, 238, 244, 0.86);
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  filter: drop-shadow(0 0 5px rgba(236, 238, 244, 0.5));
+}
+
+.preloader__comet {
+  fill: #ffd2bf;
+  filter: drop-shadow(0 0 4px var(--ember)) drop-shadow(0 0 14px var(--ember));
+}
+
+.preloader__trail {
+  fill: rgba(255, 140, 100, 0.7);
 }
 
 .preloader__pct {
-  justify-self: center;
   font-family: var(--mono);
   font-size: 0.9rem;
   letter-spacing: 0.12em;
@@ -319,6 +392,60 @@ main,
 .preloader.is-done {
   transform: translateY(-100%);
   visibility: hidden;
+}
+
+/* The iris: a hole grows from the full stop (--hx, --hy, --hole from main.js). */
+.preloader.is-iris {
+  -webkit-mask: radial-gradient(circle at var(--hx) var(--hy), transparent calc(var(--hole, 0) * 1px), #000 calc(var(--hole, 0) * 1px + 1px));
+  mask: radial-gradient(circle at var(--hx) var(--hy), transparent calc(var(--hole, 0) * 1px), #000 calc(var(--hole, 0) * 1px + 1px));
+}
+
+.preloader.is-iris::after {
+  content: "";
+  position: fixed;
+  top: var(--hy);
+  left: var(--hx);
+  width: calc(var(--hole, 0) * 2px + 6px);
+  height: calc(var(--hole, 0) * 2px + 6px);
+  border: 2px solid var(--ember);
+  border-radius: 50%;
+  box-shadow: 0 0 24px rgba(255, 107, 61, 0.65);
+  translate: -50% -50%;
+}
+
+.preloader.is-iris.is-done {
+  transform: none;
+  transition: none;
+}
+
+/* ---------- Echo trails and the velocity split ---------- */
+
+/* Display type leaves stacked ghost copies as it moves (an echo), and splits
+   into ember and ice fringes while the page scrolls fast (--rgb, from main.js). */
+.echo,
+.echo * {
+  text-shadow:
+    calc(var(--ex) * 1em) calc(var(--ey) * 1em) 0 rgb(236 238 244 / calc(var(--ea) * 0.34)),
+    calc(var(--ex) * 2em) calc(var(--ey) * 2em) 0 rgb(236 238 244 / calc(var(--ea) * 0.17)),
+    calc(var(--ex) * 3em) calc(var(--ey) * 3em) 0 rgb(236 238 244 / calc(var(--ea) * 0.08)),
+    calc(var(--rgb, 0) * 1px) 0 0 rgb(255 107 61 / var(--rgb-a, 0)),
+    calc(var(--rgb, 0) * -1px) 0 0 rgb(111 227 255 / var(--rgb-a, 0));
+}
+
+@keyframes echo-in {
+  from {
+    opacity: 0;
+    transform: translateY(0.7em);
+    --ey: 0.16;
+    --ea: 1;
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+    --ey: 0;
+    --ea: 0;
+  }
 }
 
 /* ---------- Cursor ---------- */
@@ -763,22 +890,56 @@ main,
   padding-block: clamp(110px, 14vw, 200px);
 }
 
+/* The same columns as the "What I build" rows, so every aside starts exactly
+   where the row descriptions do. */
 .section-head {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 340px);
+  grid-template-columns: 70px minmax(0, 1.55fr) minmax(0, 1fr);
   align-items: end;
-  gap: 22px 56px;
+  gap: 22px 24px;
   margin-bottom: clamp(56px, 7vw, 100px);
+}
+
+.section-head .h2 {
+  grid-column: 1 / 3;
 }
 
 .section-head .label {
   grid-column: 1 / -1;
 }
 
+/* A hairline draws across as each section arrives, ember at its start. */
+.section-head::before {
+  content: "";
+  grid-column: 1 / -1;
+  height: 1px;
+  margin-bottom: 6px;
+  background: linear-gradient(90deg, var(--ember), var(--line-2) 24%, var(--line) 70%, transparent);
+  transform: scaleX(0);
+  transform-origin: 0 50%;
+  transition: transform 1.8s var(--ease-out);
+}
+
+.section-head.is-in::before,
+.no-js .section-head::before,
+.reveal-all .section-head::before {
+  transform: none;
+}
+
+/* The aside sits on the title's last baseline, so the two read as one line. */
+.section-head .h2,
 .section-head__aside {
+  align-self: last baseline;
+}
+
+.section-head__aside {
+  grid-column: 3;
+  max-width: 38ch;
+  padding-top: 14px;
+  border-top: 1px solid var(--line-2);
   color: var(--ink-2);
-  font-size: 1.06rem;
-  padding-bottom: 0.6em;
+  font-size: 1.1rem;
+  line-height: 1.55;
 }
 
 .label {
@@ -1218,7 +1379,29 @@ main,
 
 /* ---------- About ---------- */
 
+/* Default flow (phones, short screens, reduced motion): label, statement, then
+   the photo beside the copy. The card wrapper only matters in the scene below. */
+
+.about__card {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 1fr) minmax(0, 6fr);
+  grid-template-areas:
+    "label label label"
+    "statement statement statement"
+    "photo . copy";
+  align-items: end;
+}
+
+.about__inside {
+  display: contents;
+}
+
+.about__inside > .label {
+  grid-area: label;
+}
+
 .statement {
+  grid-area: statement;
   max-width: 28ch;
   margin-top: 28px;
   font-size: clamp(1.9rem, 0.9rem + 3.1vw, 4rem);
@@ -1240,62 +1423,30 @@ main,
   color: var(--ink);
 }
 
-.about__grid {
-  display: grid;
-  grid-template-columns: minmax(0, 5fr) minmax(0, 1fr) minmax(0, 6fr);
-  align-items: end;
+.about__photo {
+  grid-area: photo;
+  position: relative;
   margin-top: clamp(64px, 8vw, 120px);
 }
 
-.about__photo {
-  grid-column: 1;
-  perspective: 1000px;
-}
-
-.about__photo-inner {
-  position: relative;
-  aspect-ratio: 1 / 1;
-  overflow: hidden;
-  border-radius: var(--r);
-  transform-style: preserve-3d;
-  background: #111;
-}
-
-.about__photo-inner img {
+.about__photo img {
   width: 100%;
-  height: 100%;
+  height: auto;
+  aspect-ratio: 1 / 1;
   object-fit: cover;
+  border-radius: var(--r);
+  background: #111;
   filter: contrast(1.06) brightness(0.95);
-  transform: scale(1.06);
-}
-
-.about__photo-inner::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(180deg, transparent 62%, rgba(7, 8, 11, 0.5));
-  pointer-events: none;
-}
-
-.js [data-clip] .about__photo-inner {
-  clip-path: inset(100% 0 0 0);
-}
-
-.js [data-clip].is-in .about__photo-inner {
-  clip-path: inset(0 0 0 0);
-  transition: clip-path 1.5s var(--ease-io);
 }
 
 .about__photo figcaption {
-  display: flex;
-  justify-content: space-between;
   margin-top: 14px;
   font-size: 0.92rem;
   color: var(--ink-3);
 }
 
 .about__copy {
-  grid-column: 3;
+  grid-area: copy;
   display: grid;
   gap: 24px;
   max-width: 50ch;
@@ -1308,6 +1459,203 @@ main,
   color: var(--ink);
   font-weight: 600;
 }
+
+.about__title,
+.about__hud,
+.about__sweep {
+  display: none;
+}
+
+/* The scene (large screens): a small card opens to fill the screen while
+   "About" and "me" split apart, then the copy settles inside it.
+   assets/js/about.js adds .is-scene and drives the motion with the scroll. */
+
+.about.is-scene {
+  padding-block: 0;
+}
+
+.about.is-scene .about__stage {
+  position: relative;
+  height: 100vh;
+  max-width: none;
+  padding: 0;
+}
+
+.about.is-scene .about__card {
+  position: absolute;
+  inset: clamp(12px, 1.4vw, 22px);
+  display: block;
+  overflow: hidden;
+  border-radius: 8px;
+  background: #050609;
+  will-change: clip-path;
+}
+
+/* Capped in width so wide screens don't blow the face up; the right edge
+   fades into the panel once the card is open (--fade, from about.js). */
+.about.is-scene .about__photo {
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: min(100%, 140vh);
+  margin: 0;
+}
+
+.about.is-scene .about__photo figcaption {
+  display: none;
+}
+
+.about.is-scene .about__photo img {
+  width: 100%;
+  height: 100%;
+  aspect-ratio: auto;
+  border-radius: 0;
+  -webkit-mask-image: linear-gradient(90deg, #000 calc(58% + var(--fade, 1) * 42%), transparent calc(96% + var(--fade, 1) * 42%));
+  mask-image: linear-gradient(90deg, #000 calc(58% + var(--fade, 1) * 42%), transparent calc(96% + var(--fade, 1) * 42%));
+  object-position: 30% 28%;
+  transform-origin: 34% 36%;
+  will-change: transform;
+}
+
+/* Shade so the copy reads over the photo; the face stays clear on the left. */
+.about.is-scene .about__photo::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, rgba(5, 6, 9, 0) 22%, rgba(5, 6, 9, 0.72) 52%, rgba(5, 6, 9, 0.94) 78%),
+    linear-gradient(180deg, rgba(5, 6, 9, 0.35), transparent 30%, transparent 70%, rgba(5, 6, 9, 0.55));
+  opacity: var(--shade, 0);
+}
+
+.about.is-scene .about__photo figcaption {
+  position: absolute;
+  left: clamp(20px, 2.4vw, 40px);
+  bottom: clamp(18px, 2.2vw, 34px);
+  margin: 0;
+  font-family: var(--mono);
+  font-size: 0.82rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+  opacity: var(--shade, 0);
+}
+
+/* A band of light crosses the photo as the card opens. */
+.about.is-scene .about__sweep {
+  position: absolute;
+  inset: 0;
+  display: block;
+  background: linear-gradient(105deg, transparent 38%, rgba(255, 240, 230, 0.18) 48%, rgba(255, 255, 255, 0.05) 53%, transparent 62%) 130% 0 / 260% 100% no-repeat;
+  mix-blend-mode: screen;
+  pointer-events: none;
+}
+
+/* Brackets and tags, like the frame around the hero portrait. */
+.about.is-scene .about__hud {
+  position: absolute;
+  z-index: 3;
+  display: block;
+  pointer-events: none;
+}
+
+.about__hud .hud__c {
+  width: 22px;
+  height: 22px;
+  border-color: rgba(236, 238, 244, 0.85);
+  filter: none;
+}
+
+.about__tag {
+  position: absolute;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 9px;
+  border: 1px solid var(--line-3);
+  background: rgba(7, 8, 11, 0.82);
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  color: var(--ink-2);
+  white-space: nowrap;
+}
+
+.about__tag--tl {
+  top: 0;
+  left: 34px;
+  translate: 0 -50%;
+}
+
+.about__tag--br {
+  right: 34px;
+  bottom: 0;
+  translate: 0 50%;
+}
+
+.about__tag i {
+  width: 7px;
+  height: 7px;
+  background: var(--ember);
+  box-shadow: 0 0 10px var(--ember);
+  animation: blink 1.6s steps(2) infinite;
+}
+
+.about.is-scene .about__inside > * {
+  grid-area: auto;
+}
+
+/* Centred by the grid, not a translate: GSAP moves this box. */
+.about.is-scene .about__inside {
+  position: absolute;
+  inset-block: 0;
+  right: clamp(28px, 4vw, 72px);
+  display: grid;
+  align-content: center;
+  gap: 26px;
+  width: min(50%, 720px);
+}
+
+.about.is-scene .statement {
+  max-width: none;
+  margin: 0;
+  font-size: clamp(1.7rem, 0.6rem + 2.3vw, 3.3rem);
+}
+
+.about.is-scene .about__copy {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 18px 32px;
+  max-width: none;
+  padding: 0;
+  font-size: 1rem;
+}
+
+.about.is-scene .about__sign {
+  grid-column: 1 / -1;
+}
+
+.about.is-scene .about__title {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  margin: 0;
+  font-size: clamp(4.2rem, 1rem + 9vw, 11rem);
+  font-weight: 860;
+  font-stretch: 125%;
+  line-height: 0.86;
+  letter-spacing: -0.05em;
+  text-transform: uppercase;
+  pointer-events: none;
+}
+
+.about__word {
+  display: block;
+  will-change: transform, opacity;
+}
+
 
 /* ---------- What I build: rows ---------- */
 
@@ -1681,7 +2029,8 @@ main,
   pointer-events: none;
 }
 
-.shot:hover .shot__glare {
+.shot:hover .shot__glare,
+.mini a:hover .shot__glare {
   opacity: 1;
 }
 
@@ -1832,6 +2181,461 @@ main,
   }
 }
 
+/* ---------- The reel: ribbon, ring, reel (large screens with WebGL) ---------- */
+
+.reel {
+  position: relative;
+}
+
+.reel[hidden],
+.work.is-reel .projects {
+  display: none;
+}
+
+.work.is-reel .section-head {
+  margin-bottom: clamp(16px, 2vw, 32px);
+}
+
+.reel__pin {
+  --glow: #8b9cff;
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+  touch-action: pan-y;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.reel__pin.is-dragging {
+  cursor: grabbing;
+}
+
+.reel__canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* A soft light in the colour of the project in focus. */
+.reel__glow {
+  position: absolute;
+  top: var(--card-cy, 50%);
+  left: 50%;
+  width: min(110vw, 1500px);
+  height: 92vh;
+  background: radial-gradient(closest-side, color-mix(in srgb, var(--glow) 24%, transparent), transparent 72%);
+  opacity: calc(0.5 + var(--reel, 0) * 0.5);
+  translate: -50% -50%;
+  transition: --glow 0.9s var(--ease-soft);
+  pointer-events: none;
+}
+
+/* Giant outlined words drifting behind the cards. */
+.reel__ghost {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  align-content: center;
+  gap: 4vh;
+  opacity: calc(1 - var(--reel, 0) * 0.55);
+  pointer-events: none;
+}
+
+.reel__ghost-row {
+  margin: 0;
+  font-size: clamp(5rem, 15vh, 11rem);
+  font-weight: 860;
+  font-stretch: 125%;
+  line-height: 0.9;
+  letter-spacing: -0.04em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: rgba(236, 238, 244, 0.03);
+  -webkit-text-stroke: 1px rgba(236, 238, 244, 0.1);
+  will-change: transform;
+}
+
+/* --g is the scene's scroll position: the rows drift in opposite directions. */
+.reel__ghost-row:first-child {
+  transform: translateX(calc(var(--g, 0) * -15vw));
+}
+
+.reel__ghost-row:last-child {
+  transform: translateX(calc(var(--g, 0) * 15vw - 115vw));
+}
+
+.reel__ghost-row i {
+  font-style: normal;
+  color: rgba(255, 107, 61, 0.09);
+  -webkit-text-stroke: 0;
+}
+
+/* Text circling inside the ring. */
+.reel__orbit {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: var(--orbit, 420px);
+  height: var(--orbit, 420px);
+  max-width: none;
+  overflow: visible;
+  opacity: var(--ring, 0);
+  transform: translate(-50%, -50%) perspective(1600px) rotateX(19deg) rotate(var(--spin, 0deg));
+  pointer-events: none;
+}
+
+.reel__orbit text {
+  font-family: var(--mono);
+  font-size: 9.5px;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  fill: var(--ink-2);
+}
+
+.reel__orbit-line {
+  fill: none;
+  stroke: rgba(255, 107, 61, 0.35);
+  stroke-width: 0.6;
+  stroke-dasharray: 2 5;
+}
+
+.reel__center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin: 0;
+  font-size: clamp(1.8rem, 0.8rem + 2vw, 3rem);
+  font-weight: 830;
+  font-stretch: 120%;
+  letter-spacing: -0.04em;
+  white-space: nowrap;
+  opacity: var(--ring, 0);
+  transform: translate(-50%, -50%) scale(calc(0.86 + var(--ring, 0) * 0.14));
+  pointer-events: none;
+}
+
+.reel__caption {
+  position: absolute;
+  top: var(--cap-y, 70%);
+  left: 50%;
+  display: grid;
+  justify-items: center;
+  gap: 8px;
+  width: min(90%, 680px);
+  text-align: center;
+  opacity: var(--cap, 0);
+  translate: -50% 0;
+  pointer-events: none;
+}
+
+.reel__cap-count {
+  font-family: var(--mono);
+  font-size: 0.86rem;
+  letter-spacing: 0.1em;
+  color: var(--glow);
+}
+
+.reel__cap-title {
+  font-size: clamp(1.7rem, 1rem + 1.4vw, 2.6rem);
+  font-weight: 820;
+  font-stretch: 118%;
+  letter-spacing: -0.035em;
+  line-height: 1;
+}
+
+.reel__cap-tag {
+  color: var(--ink);
+  font-size: 1.06rem;
+  opacity: 0.78;
+}
+
+.reel__caption.is-swap > *,
+.reel__detail.is-swap > *,
+.reel__meta.is-swap > * {
+  animation: echo-in 0.8s var(--ease-out) both;
+}
+
+.reel__caption.is-swap > :nth-child(2),
+.reel__detail.is-swap > :nth-child(2),
+.reel__meta.is-swap > :nth-child(2) {
+  animation-delay: 0.05s;
+}
+
+.reel__caption.is-swap > :nth-child(3),
+.reel__detail.is-swap > :nth-child(3),
+.reel__meta.is-swap > :nth-child(3) {
+  animation-delay: 0.1s;
+}
+
+.reel__detail.is-swap > :nth-child(4) {
+  animation-delay: 0.15s;
+}
+
+/* An invisible link over the card in focus: click it to open the project. */
+.reel__hit {
+  position: absolute;
+  z-index: 3;
+  display: none;
+  border-radius: 8px;
+  -webkit-user-drag: none;
+}
+
+.reel__hit.is-on {
+  display: block;
+}
+
+.reel__hit:focus-visible {
+  outline: 2px solid var(--ember);
+  outline-offset: 6px;
+}
+
+/* The overlay sits on the same grid as the rest of the page, so the project
+   title lines up with "Stuff I've shipped." above it. */
+.reel__frame {
+  position: absolute;
+  inset: 0;
+  max-width: calc(var(--wrap) + var(--gutter) * 2);
+  margin-inline: auto;
+  pointer-events: none;
+}
+
+.reel__count {
+  position: absolute;
+  top: calc(var(--header-h) + 22px);
+  left: var(--gutter);
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin: 0;
+  font-family: var(--mono);
+  font-size: 0.86rem;
+  letter-spacing: 0.08em;
+  color: var(--ink-2);
+  opacity: var(--chrome, 0);
+}
+
+.reel__count-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font);
+  font-size: 0.95rem;
+  font-weight: 650;
+  font-stretch: 108%;
+  letter-spacing: 0;
+}
+
+.reel__count-label::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  background: var(--ember);
+}
+
+.reel__detail,
+.reel__side {
+  position: absolute;
+  top: var(--card-cy, 50%);
+  z-index: 2;
+  width: calc((100% - var(--card-w, 480px)) / 2 - var(--gutter) - 52px);
+  max-width: 440px;
+  opacity: var(--reel, 0);
+  translate: 0 -50%;
+}
+
+.reel.is-reel-on :is(.reel__detail, .reel__side) {
+  pointer-events: auto;
+}
+
+.reel__detail {
+  left: var(--gutter);
+}
+
+.reel__side {
+  right: var(--gutter);
+  display: grid;
+  gap: 26px;
+}
+
+.reel__no {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--mono);
+  font-size: 0.9rem;
+  color: var(--ink-2);
+}
+
+.reel__no span {
+  color: var(--accent);
+}
+
+/* A short accent rule ties the number to the project's colour. */
+.reel__no::after {
+  content: "";
+  width: 36px;
+  height: 2px;
+  background: var(--accent);
+}
+
+.reel__title {
+  margin: 16px 0 18px;
+  /* Sized to its column (--col, from reel.js) so one-word names never break. */
+  font-size: clamp(2rem, calc(var(--col, 400px) / 6.4), 4.4rem);
+  font-weight: 840;
+  font-stretch: 120%;
+  letter-spacing: -0.045em;
+  line-height: 0.95;
+}
+
+.reel__tag {
+  font-size: clamp(1.08rem, 0.98rem + 0.3vw, 1.28rem);
+  font-weight: 650;
+  font-stretch: 106%;
+  line-height: 1.3;
+}
+
+.reel__desc {
+  margin-top: 12px;
+  color: var(--ink-2);
+  font-size: 1.02rem;
+  line-height: 1.62;
+}
+
+.reel__index ol {
+  display: grid;
+  gap: 2px;
+}
+
+.reel__index button {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  width: 100%;
+  padding: 5px 0;
+  font-family: var(--mono);
+  font-size: 0.9rem;
+  color: var(--ink-3);
+  text-align: left;
+  transition: color 0.3s, transform 0.5s var(--ease-out);
+}
+
+.reel__index button:hover {
+  color: var(--ink);
+  transform: translateX(4px);
+}
+
+.reel__index-name {
+  position: relative;
+}
+
+.reel__index-name::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -3px;
+  height: 1.5px;
+  background: var(--ember);
+  transform: scaleX(0);
+  transform-origin: 0 50%;
+  transition: transform 0.5s var(--ease-out);
+}
+
+.reel__index button[aria-current="true"] {
+  color: var(--ink);
+}
+
+.reel__index button[aria-current="true"] .reel__index-no {
+  color: var(--ember);
+}
+
+.reel__index button[aria-current="true"] .reel__index-name::after {
+  transform: scaleX(1);
+}
+
+.reel__meta {
+  display: grid;
+  gap: 10px;
+  padding-top: 22px;
+  border-top: 1px solid var(--line-2);
+}
+
+.reel__stack {
+  color: var(--ink-2);
+  font-size: 0.98rem;
+  line-height: 1.5;
+}
+
+.reel__note {
+  color: var(--ink-3);
+  font-size: 0.92rem;
+}
+
+.reel__meta .project__links {
+  margin-top: 6px;
+}
+
+.reel__meta .arrow-link--accent {
+  color: var(--accent);
+}
+
+/* One tick per project; the one in focus grows and turns ember. */
+.reel__ticks {
+  position: absolute;
+  bottom: clamp(28px, 4vh, 44px);
+  left: var(--gutter);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  opacity: var(--chrome, 0);
+}
+
+.reel__ticks li {
+  width: 18px;
+  height: 2px;
+  background: var(--line-3);
+  transition: width 0.6s var(--ease-out), background-color 0.4s;
+}
+
+.reel__ticks li.is-on {
+  width: 44px;
+  background: var(--ember);
+}
+
+.reel__hint {
+  position: absolute;
+  bottom: clamp(18px, 3vh, 34px);
+  left: 50%;
+  margin: 0;
+  padding: 8px 18px;
+  border: 1px solid var(--line-2);
+  border-radius: 99px;
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+  white-space: nowrap;
+  translate: -50% 0;
+  background: rgba(7, 8, 11, 0.7);
+  opacity: var(--chrome, 0);
+}
+
+@media (max-height: 820px) {
+  .reel__desc {
+    display: -webkit-box;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 4;
+  }
+
+  .reel__index button {
+    padding: 3px 0;
+  }
+}
+
 /* Side quests */
 
 .more {
@@ -1852,11 +2656,23 @@ main,
 }
 
 .mini__img {
+  position: relative;
   display: block;
   aspect-ratio: 2.36;
   overflow: hidden;
   border-radius: 2px;
   margin-bottom: 6px;
+}
+
+/* Side quest images wipe in from the top as their card arrives. */
+.js .mini[data-reveal] .mini__img {
+  clip-path: inset(0 0 100% 0);
+}
+
+.js .mini[data-reveal].is-in .mini__img,
+.reveal-all .mini .mini__img {
+  clip-path: inset(0 0 0 0);
+  transition: clip-path 1.3s var(--ease-io) var(--d, 0s);
 }
 
 .mini__img img {
@@ -2381,8 +3197,14 @@ main,
 .step {
   position: relative;
   display: grid;
-  gap: 12px;
+  align-content: start;
+  gap: 28px;
   color: var(--ink-2);
+}
+
+.step__text {
+  display: grid;
+  gap: 12px;
 }
 
 .step__node {
@@ -2394,17 +3216,22 @@ main,
   height: 18px;
   border: 1.5px solid var(--line-3);
   background: var(--bg);
-  transition: border-color 0.5s, background-color 0.5s;
+  transition: border-color 0.5s, background-color 0.5s, box-shadow 0.5s;
 }
 
 .step.is-on .step__node {
   border-color: var(--ember);
   background: var(--ember);
+  box-shadow: 0 0 18px rgba(255, 107, 61, 0.55);
 }
 
 .step__no {
   font-family: var(--mono);
   font-size: 0.9rem;
+  color: var(--ember);
+}
+
+.step__no span {
   color: var(--ink-3);
 }
 
@@ -2417,9 +3244,358 @@ main,
   color: var(--ink);
 }
 
-.step p:last-child {
+.step__text p:last-child {
   max-width: 36ch;
   font-size: 1.05rem;
+}
+
+.step__art {
+  width: 100%;
+  max-width: 380px;
+}
+
+/* The track (large screens): the steps slide past as one horizontal strip
+   while two rows of giant ghost words drift behind at their own speeds. */
+
+.process__ghost {
+  display: none;
+}
+
+.process.is-track {
+  padding-bottom: 0;
+}
+
+.process.is-track .section-head {
+  margin-bottom: 0;
+}
+
+.process.is-track .process__stage {
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.process.is-track .process__ghost {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  align-content: space-between;
+  padding-block: clamp(70px, 11vh, 120px) clamp(30px, 6vh, 70px);
+  pointer-events: none;
+}
+
+.process__ghost-row {
+  margin: 0;
+  font-size: clamp(5rem, 17vh, 12rem);
+  font-weight: 860;
+  font-stretch: 125%;
+  line-height: 0.9;
+  letter-spacing: -0.04em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: rgba(236, 238, 244, 0.03);
+  -webkit-text-stroke: 1px rgba(236, 238, 244, 0.1);
+  will-change: transform;
+}
+
+.process__ghost-row i {
+  font-style: normal;
+  color: rgba(255, 107, 61, 0.09);
+  -webkit-text-stroke: 0;
+}
+
+.process.is-track .process__wrap {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: grid;
+  align-content: center;
+}
+
+.process.is-track .steps {
+  display: flex;
+  gap: clamp(90px, 10vw, 180px);
+  width: max-content;
+  padding-top: 64px;
+  will-change: transform;
+}
+
+.process.is-track .step {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 0.85fr);
+  align-items: center;
+  gap: clamp(32px, 4vw, 72px);
+  width: min(74vw, 1120px);
+}
+
+.process.is-track .step__title {
+  font-size: clamp(3.2rem, 0.8rem + 5vw, 7.2rem);
+  line-height: 0.92;
+}
+
+.process.is-track .step__text {
+  gap: 20px;
+}
+
+.process.is-track .step__text p:last-child {
+  font-size: clamp(1.1rem, 1rem + 0.3vw, 1.3rem);
+  line-height: 1.55;
+}
+
+.process.is-track .step__art {
+  max-width: 520px;
+  justify-self: center;
+}
+
+/* Step graphics: line art in the site's hairline style, with ember for the
+   moment that matters. They loop only while their step is lit. */
+
+.art {
+  height: auto;
+  overflow: visible;
+}
+
+.art text {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  fill: var(--ink-3);
+}
+
+/* Specific enough to beat each graphic's own animation shorthand. */
+.step:not(.is-on) .art * {
+  animation-play-state: paused;
+}
+
+/* 01: a verdict meter that wobbles, then settles on "real". */
+.art__ticks,
+.art__track {
+  fill: none;
+  stroke: var(--line-3);
+  stroke-width: 1.5;
+}
+
+.art__arc {
+  fill: none;
+  stroke: var(--ember);
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-dasharray: 100;
+  stroke-dashoffset: 89;
+  animation: art-arc 5.5s var(--ease-io) infinite;
+}
+
+.art__needle {
+  transform-origin: 160px 160px;
+  transform: rotate(-70deg);
+  animation: art-needle 5.5s var(--ease-io) infinite;
+}
+
+.art__needle path {
+  stroke: var(--ink);
+  stroke-width: 3;
+  stroke-linecap: round;
+}
+
+.art__needle circle {
+  fill: var(--bg);
+  stroke: var(--ink);
+  stroke-width: 2.5;
+}
+
+.art__stamp {
+  transform-origin: 255px 31px;
+  opacity: 0;
+  animation: art-stamp 5.5s infinite;
+}
+
+.art__stamp rect {
+  fill: rgba(255, 107, 61, 0.08);
+  stroke: var(--ember);
+  stroke-width: 2;
+}
+
+.art .art__stamp text {
+  font-family: var(--font);
+  font-size: 14px;
+  font-weight: 760;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  fill: var(--ember);
+}
+
+@keyframes art-needle {
+  0% { transform: rotate(-70deg); }
+  28% { transform: rotate(28deg); }
+  42% { transform: rotate(-18deg); }
+  62% { transform: rotate(60deg); }
+  70% { transform: rotate(47deg); }
+  78%, 94% { transform: rotate(52deg); }
+  100% { transform: rotate(-70deg); }
+}
+
+@keyframes art-arc {
+  0% { stroke-dashoffset: 89; }
+  28% { stroke-dashoffset: 34; }
+  42% { stroke-dashoffset: 60; }
+  62% { stroke-dashoffset: 17; }
+  70% { stroke-dashoffset: 24; }
+  78%, 94% { stroke-dashoffset: 21; }
+  100% { stroke-dashoffset: 89; }
+}
+
+@keyframes art-stamp {
+  0%, 70% { opacity: 0; transform: rotate(-8deg) scale(1.7); }
+  75% { opacity: 1; transform: rotate(-8deg) scale(0.94); }
+  79%, 94% { opacity: 1; transform: rotate(-8deg) scale(1); }
+  100% { opacity: 0; transform: rotate(-8deg) scale(1); }
+}
+
+/* 02: a window builds itself, then a cursor clicks the ember button. */
+.art__window {
+  fill: rgba(236, 238, 244, 0.02);
+  stroke: var(--line-3);
+  stroke-width: 1.5;
+}
+
+.art__bar {
+  stroke: var(--line-3);
+  stroke-width: 1.5;
+}
+
+.art__dots circle {
+  fill: var(--line-3);
+}
+
+.art .art__url {
+  font-size: 10px;
+}
+
+.art__block {
+  fill: rgba(236, 238, 244, 0.16);
+  transform-box: fill-box;
+  transform-origin: 0 50%;
+  transform: scaleX(0);
+  animation: art-build 6s var(--ease-out) infinite;
+}
+
+.art__block.b2 { animation-delay: 0.2s; }
+.art__block.b3 { animation-delay: 0.4s; }
+.art__block.b4 { animation-delay: 0.6s; fill: rgba(111, 227, 255, 0.1); stroke: rgba(111, 227, 255, 0.45); stroke-width: 1.2; }
+.art__block.b5 { animation-delay: 0.85s; }
+
+.art__btn {
+  fill: var(--ember);
+}
+
+.art__cursor {
+  fill: var(--ink);
+  stroke: var(--bg);
+  stroke-width: 1.2;
+  transform: translate(252px, 172px);
+  animation: art-cursor 6s var(--ease-io) infinite;
+}
+
+.art__click {
+  fill: none;
+  stroke: var(--ember);
+  stroke-width: 2;
+  transform-box: fill-box;
+  transform-origin: center;
+  opacity: 0;
+  animation: art-click 6s var(--ease-out) infinite;
+}
+
+@keyframes art-build {
+  0% { transform: scaleX(0); opacity: 1; }
+  14%, 88% { transform: scaleX(1); opacity: 1; }
+  96%, 100% { transform: scaleX(1); opacity: 0; }
+}
+
+@keyframes art-cursor {
+  0%, 26% { transform: translate(252px, 172px); }
+  44% { transform: translate(84px, 128px); }
+  48% { transform: translate(84px, 128px) scale(0.82); }
+  52%, 84% { transform: translate(84px, 128px) scale(1); }
+  100% { transform: translate(252px, 172px); }
+}
+
+@keyframes art-click {
+  0%, 46% { opacity: 0; transform: scale(0.4); }
+  50% { opacity: 1; transform: scale(1); }
+  66%, 100% { opacity: 0; transform: scale(4.5); }
+}
+
+/* 03: the old model slides out, the next one slides in, the app stays put. */
+.art__app,
+.art__socket {
+  fill: rgba(236, 238, 244, 0.02);
+  stroke: var(--line-3);
+  stroke-width: 1.5;
+}
+
+.art__socket {
+  stroke-dasharray: 4 4;
+}
+
+.art .art__label {
+  font-family: var(--font);
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0;
+  fill: var(--ink);
+}
+
+.art__wire {
+  stroke: var(--ember);
+  stroke-width: 2;
+  stroke-dasharray: 6 6;
+  animation: art-dash 0.9s linear infinite;
+}
+
+.art__chip rect {
+  fill: #10121a;
+  stroke: var(--line-3);
+  stroke-width: 1.5;
+}
+
+.art .art__chip text {
+  font-size: 12px;
+  fill: var(--ink-2);
+}
+
+.art__chip--in rect {
+  fill: rgba(255, 107, 61, 0.12);
+  stroke: var(--ember);
+}
+
+.art .art__chip--in text {
+  fill: var(--ember);
+}
+
+.art__chip--out {
+  animation: art-out 5s var(--ease-io) infinite;
+}
+
+.art__chip--in {
+  opacity: 0;
+  transform: translateY(80px);
+  animation: art-in 5s var(--ease-io) infinite;
+}
+
+@keyframes art-dash {
+  to { stroke-dashoffset: -12; }
+}
+
+@keyframes art-out {
+  0%, 30% { opacity: 1; transform: none; }
+  50%, 88% { opacity: 0; transform: translateY(-80px); }
+  100% { opacity: 1; transform: none; }
+}
+
+@keyframes art-in {
+  0%, 30% { opacity: 0; transform: translateY(80px); }
+  50%, 88% { opacity: 1; transform: none; }
+  100% { opacity: 0; transform: translateY(80px); }
 }
 
 /* ---------- Contact ---------- */
@@ -2436,6 +3612,7 @@ main,
 }
 
 .contact__title {
+  filter: drop-shadow(0 0 42px rgba(236, 238, 244, 0.16));
   font-size: clamp(4.4rem, 2rem + 12vw, 15rem);
   font-weight: 860;
   font-stretch: 122%;
@@ -3262,18 +4439,21 @@ main,
     grid-template-columns: 1fr;
   }
 
-  .about__grid {
-    grid-template-columns: 1fr;
-    gap: 40px;
+  .section-head > *,
+  .section-head .h2,
+  .section-head__aside {
+    grid-column: 1 / -1;
   }
 
-  .about__photo,
-  .about__copy {
-    grid-column: 1;
+  .about__card {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas: "label" "statement" "photo" "copy";
+    row-gap: 40px;
   }
 
   .about__photo {
     max-width: 520px;
+    margin-top: 24px;
   }
 
   .row {
@@ -3421,6 +4601,10 @@ main,
     left: -44px;
   }
 
+  .step__art {
+    max-width: 320px;
+  }
+
   .contact__actions {
     flex-direction: column;
     gap: 22px;
@@ -3529,10 +4713,27 @@ main,
     transform: none;
   }
 
-  .js [data-clip] .about__photo-inner,
-  .js .project__media [data-shot] {
+  .js .project__media [data-shot],
+  .js .mini[data-reveal] .mini__img {
     clip-path: none;
   }
+
+  .section-head::before {
+    transform: none;
+  }
+
+  /* Step graphics hold their finished state instead of looping. */
+  .art * {
+    animation: none !important;
+  }
+
+  .art__needle { transform: rotate(52deg); }
+  .art__arc { stroke-dashoffset: 21; }
+  .art__stamp { opacity: 1; transform: rotate(-8deg); }
+  .art__block { transform: none; }
+  .art__cursor { transform: translate(84px, 128px); }
+  .art__chip--out { opacity: 0; }
+  .art__chip--in { opacity: 1; transform: none; }
 
   .js .statement .w {
     color: var(--ink);
